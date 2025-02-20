@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bdf{
+    background-color: #ffffff95;
+    color: #006bb8;
+    color:#003155;
+    color: #03528C;
+    color: #0095ff;
+}

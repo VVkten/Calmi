@@ -1,39 +1,27 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { SplashScreen, Stack } from "expo-router";
+import "../global.css"
+import { useEffect } from "react";
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+export default function Layout(){
+    const [fontsLoaded] = useFonts({
+      "Ubuntu-Bold": require('../assets/fonts/Ubuntu-Bold.ttf'),
+      "Ubuntu-BoldItalic": require('../assets/fonts/Ubuntu-BoldItalic.ttf'),
+      "Ubuntu-Italic": require('../assets/fonts/Ubuntu-Italic.ttf'),
+      "Ubuntu-Light": require('../assets/fonts/Ubuntu-Light.ttf'),
+      "Ubuntu-LightItalic": require('../assets/fonts/Ubuntu-LightItalic.ttf'),
+      "Ubuntu-Medium": require('../assets/fonts/Ubuntu-Medium.ttf'),
+      "Ubuntu-MediumItalic": require('../assets/fonts/Ubuntu-MediumItalic.ttf'),
+      "Ubuntu-Regular": require('../assets/fonts/Ubuntu-Regular.ttf')
+    })
+  
+    useEffect (() => {
+      if (fontsLoaded){
+        SplashScreen.hideAsync();
+      }
+    }, [fontsLoaded])
+  
+    if (!fontsLoaded) return null;
+  
+    return <Stack screenOptions={{ headerShown: false }}/>
 }
