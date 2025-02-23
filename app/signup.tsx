@@ -3,12 +3,13 @@ import { View, Text, TextInput, TouchableOpacity, ImageBackground, Image } from 
 import image from '@/constants/image';
 import LinearGradient from 'react-native-linear-gradient';
 import { Link } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Signup = () => {
   const [step, setStep] = useState(1);
 
   return (
-    <View className="flex-1 justify-center items-center bg-blue-100">
+    <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
       <ImageBackground 
         source={image.phonStandart} 
         className="flex-1 bg-cover justify-center items-center" 
@@ -31,7 +32,7 @@ const Signup = () => {
                 <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Ім'я </Text>
                 <TextInput 
                   placeholder="Введіть ваше ім'я"
-                  className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
                 <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть повне ім'я</Text>
@@ -43,7 +44,7 @@ const Signup = () => {
                   placeholder="Введіть номер телефону"
                   maxLength={10}
                   keyboardType="phone-pad"
-                  className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
                 <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть свій номер телефону</Text>
@@ -55,7 +56,7 @@ const Signup = () => {
                   placeholder="Введіть код пацієнта"
                   maxLength={6}  
                   keyboardType="numeric"
-                  className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
                 <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть свій 6-значний код</Text>
@@ -81,7 +82,7 @@ const Signup = () => {
                 <TextInput 
                   placeholder="Enter your password"
                   secureTextEntry
-                  className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
                 <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Пароль повинен містити не менше 8 символів, включаючи число та спеціальний символ.</Text>
@@ -92,7 +93,7 @@ const Signup = () => {
                 <TextInput 
                   placeholder="Confirm your password"
                   secureTextEntry
-                  className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
                 <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Паролі повинні співпадати</Text>
@@ -111,7 +112,7 @@ const Signup = () => {
           
         </View>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
 
   );
 };

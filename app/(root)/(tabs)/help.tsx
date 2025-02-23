@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const help = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>help</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 

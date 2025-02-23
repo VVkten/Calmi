@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import image from '@/constants/image';
 import { Link } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const forgotpassword = () => {
   return (
-    <View className="flex-1 justify-center items-center bg-blue-100">
+    <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
       <ImageBackground 
         source={image.phonGreen} 
         className="flex-1 bg-cover justify-center items-center" 
@@ -42,7 +43,7 @@ const forgotpassword = () => {
         <Link href="/login" className='text-green-800 font-ubuntu-medium mt-4 shadow-md shadow-green-500'>Скасувати</Link>
 
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   )
 }
 

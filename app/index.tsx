@@ -2,10 +2,11 @@ import { Link } from "expo-router";
 import { Text, View, TouchableOpacity, ImageBackground, Image } from "react-native";
 
 import image from "@/constants/image";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
-    <View className="flex-1">
+    <SafeAreaView className="flex-1">
       {/* Фонове зображення */}
       <ImageBackground 
         source={image.phonStandart} 
@@ -36,7 +37,7 @@ export default function Index() {
           <Link href="/(root)/(tabs)/home" className="text-blue-700 font-ubuntu-bold mt-4">Home Screen</Link>
         </View>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 }
 

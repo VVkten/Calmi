@@ -3,6 +3,7 @@ import React from 'react';
 import image from '@/constants/image';
 import LinearGradient from 'react-native-linear-gradient';
 import { Link } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const login = () => {
@@ -27,7 +28,7 @@ const login = () => {
 
 
   return (
-    <View className="flex-1 justify-center items-center bg-blue-100">
+    <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
       <ImageBackground 
         source={image.phonStandart} 
         className="flex-1 bg-cover justify-center items-center" 
@@ -79,7 +80,7 @@ const login = () => {
         </View>
         
     </ImageBackground>
-  </View>
+  </SafeAreaView>
   
   );
 }
