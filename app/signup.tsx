@@ -51,15 +51,15 @@ const Signup = () => {
               </View>
 
               <View className="mb-10">
-                <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Код пацієнта</Text>
+                <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Електронна адреса</Text>
                 <TextInput 
-                  placeholder="Введіть код пацієнта"
+                  placeholder="Введіть свою електронну адресу"
                   maxLength={6}  
-                  keyboardType="numeric"
+                  keyboardType="email-address"
                   className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
-                <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть свій 6-значний код</Text>
+                <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть свою електронну адресу</Text>
               </View>
 
               <TouchableOpacity onPress={() => setStep(2)} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-10 rounded-xl shadow-md">
@@ -80,7 +80,7 @@ const Signup = () => {
               <View className="mb-8">
                 <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Пароль</Text>
                 <TextInput 
-                  placeholder="Enter your password"
+                  placeholder="Введіть ваш пароль"
                   secureTextEntry
                   className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
@@ -91,7 +91,7 @@ const Signup = () => {
               <View className="mb-8">
                 <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Підтвердіть пароль</Text>
                 <TextInput 
-                  placeholder="Confirm your password"
+                  placeholder="Підтвердіть ваш пароль"
                   secureTextEntry
                   className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}

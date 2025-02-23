@@ -17,6 +17,7 @@ import unlike from "@/assets/icons/unlike.png";
 import unlikeTrue from "@/assets/icons/unlike-all.png";
 import comment from "@/assets/icons/comment.png";
 import share from "@/assets/icons/share.png";
+import all from "@/assets/icons/all.png";
 
 export default {
     google,
@@ -37,5 +38,6 @@ export default {
     unlike,
     unlikeTrue,
     comment,
-    share
+    share,
+    all
 };

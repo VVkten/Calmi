@@ -27,8 +27,6 @@ const TabsLayout = () => {
   return (
     <SafeAreaView className="flex-1 bg-transparent" style={{ backgroundColor: 'transparent' }}>
       {/* Додаємо Header перед вкладками */}
-      <Header />
-
       <Tabs
       screenOptions={{
           tabBarShowLabel: false,
@@ -72,12 +70,12 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="addPost"
+          name="forum"
           options={{
-            title: "addPost",
+            title: "forum",
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} icon={icons.addPostDot} />
+              <TabIcon focused={focused} icon={icons.comment} />
             ),
           }}
         />

@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         {/* Сповіщення */}
         <View>
           <Link href="/(root)/(settings)/notification">
-            <View className="w-14 h-14 rounded-xl bg-[#ffffffac] shadow-lg flex items-center justify-center border border-primary-dark-200 mr-8">
+            <View className="w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border border-primary-dark-200 mr-8">
               <Image
                 source={icon.notification} 
                 className="w-8 h-8"
@@ -32,7 +32,7 @@ const Header: React.FC = () => {
         {/* Акаунт */}
         <View>
           <Link href="/(root)/(settings)/account">
-            <View className=" w-14 h-14 rounded-xl bg-[#ffffffac] shadow-lg flex items-center justify-center border border-primary-dark-200">
+            <View className=" w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border border-primary-dark-200">
               <Image
                 source={icon.account} 
                 className="w-8 h-8"

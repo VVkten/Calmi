@@ -14,6 +14,8 @@ import phonOrngYel from "@/assets/images/phon-orang-yel.jpg";
 import phonRedDot from "@/assets/images/phon-red-dot.jpg";
 import logotextright from "@/assets/images/iconplustextright.png";
 import user from "@/assets/images/user.png";
+import exrAngel from "@/assets/images/exr_angel.png";
+import phonGreenDot from "@/assets/images/phon-green-dot.jpg";
 
 export default {
     logoStandart,
@@ -31,5 +33,7 @@ export default {
     phonOrngYel,
     phonRedDot,
     logotextright,
-    user
+    user,
+    exrAngel,
+    phonGreenDot
 };

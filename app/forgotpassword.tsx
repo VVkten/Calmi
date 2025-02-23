@@ -18,7 +18,7 @@ const forgotpassword = () => {
         <View className="mb-10">
           <Text className="text-green-900 font-ubuntu-medium mb-1">Новий пароль</Text>
             <TextInput 
-              placeholder="Enter your password"
+              placeholder="Введіть новий пароль"
               secureTextEntry
               className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-green-700 mx-auto"
               style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}/>
@@ -28,17 +28,19 @@ const forgotpassword = () => {
         <View className="mb-10">
           <Text className="text-green-900 font-ubuntu-medium mb-1">Підтвердіть пароль</Text>
             <TextInput 
-              placeholder="Confirm your password"
+              placeholder="Підтвердіть пароль"
               secureTextEntry
               className="w-[320px] bg-[#ffffff95] p-4 rounded-3xl shadow-sm border border-green-700 mx-auto"
               style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}/>
           <Text className="w-[320px] font-ubuntu-italic text-xs text-green-800 mt-2">Паролі повинні співпадати</Text>
         </View>
 
-        <TouchableOpacity className="w-[200px] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
-          style={{ zIndex: 10 }}>
-          <Text className="text-center text-lg font-ubuntu-medium text-green-900">Увійти</Text>
-        </TouchableOpacity>
+        <Link href="/succes" asChild>
+          <TouchableOpacity className="w-[200px] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+            style={{ zIndex: 10 }}>
+            <Text className="text-center text-lg font-ubuntu-medium text-green-900">Відновити</Text>
+          </TouchableOpacity>
+        </Link>
 
         <Link href="/login" className='text-green-800 font-ubuntu-medium mt-4 shadow-md shadow-green-500'>Скасувати</Link>
 

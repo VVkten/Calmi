@@ -51,30 +51,32 @@ const login = () => {
           {/* Поля вводу */}
           <TextInput 
             placeholder="Електрона пошта"
-            className="font-ubuntu-medium w-[320px] bg-[#ffffff95] p-4 rounded-xl shadow-sm shadow-primary-dark-200 text-primary-dark-400 mb-3 border border-primary-dark-400 mx-auto"
+            className="font-ubuntu-medium w-[320px] bg-[#ffffff95] p-4 rounded-xl text-primary-dark-400 mb-3 border border-primary-dark-400 mx-auto"
             style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
           />
           <TextInput 
             placeholder="Пароль"
             secureTextEntry
-            className="w-[320px] bg-[#ffffff95] p-4 rounded-xl shadow-sm shadow-primary-dark-200 text-primary-dark-400 mb-2 border border-primary-dark-400 font-ubuntu-medium mx-auto"
+            className="w-[320px] bg-[#ffffff95] p-4 rounded-xl text-primary-dark-400 mb-2 border border-primary-dark-400 font-ubuntu-medium mx-auto"
             style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
           />
       
           {/* Забули пароль (зліва) */}
-          <Link href="/forgotpassword" className="text-sm text-primary-dark-200 ml-2 font-ubuntu-medium self-start">Forgot password?</Link>
+          <Link href="/forgotpassword" className="text-sm text-primary-dark-200 ml-2 font-ubuntu-medium self-start">Забули пароль?</Link>
       
           {/* Кнопка входу */}
-          <TouchableOpacity className="w-[320px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl shadow-md"
-            style={{ zIndex: 10 }}>
-            <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Увійти</Text>
-          </TouchableOpacity>
+          <Link href="/(root)/(tabs)/home" asChild>
+            <TouchableOpacity className="w-[320px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl shadow-md"
+              style={{ zIndex: 10 }}>
+              <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Увійти</Text>
+            </TouchableOpacity>
+          </Link>
       
           {/* Реєстрація (внизу екрану) */}
           <Text className="text-sm font-ubuntu-medium text-primary-dark-200 absolute bottom-6"
             style={{ zIndex: 1 }} >
-            Don't have an account?{' '}
-            <Link href="/signup" className="text-primary-dark-400 font-ubuntu-medium">Sign Up</Link>
+            Не маєте акаунту?{' '}
+            <Link href="/signup" className="text-primary-dark-400 font-ubuntu-medium">Зареєструйтесь</Link>
           </Text>
 
         </View>
