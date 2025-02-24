@@ -28,20 +28,20 @@ export default function HomeScreen() {
         >
           <View>
           
-            <Link href="/(root)/(other tabs)/exerciseAll" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">Популярні вправи</Link>
+            <Link href="/(root)/exercises/exerciseAll" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">Популярні вправи</Link>
          
             <View className="flex-row justify-between mt-2 m-2">
-              <ExerciseCard icon={image.exrAngel} title="Anger" link="/(root)/detailsElement/exercise" />
-              <ExerciseCard icon={image.exrAngel} title="Stress" link="/(root)/detailsElement/exercise" />
-              <ExerciseCard icon={image.exrAngel} title="Relaxation" link="/(root)/detailsElement/exercise" />
+              <ExerciseCard icon={image.exrAngel} title="Anger" link="/(root)/exercises/exercise" />
+              <ExerciseCard icon={image.exrAngel} title="Stress" link="/(root)/exercises/exercise" />
+              <ExerciseCard icon={image.exrAngel} title="Relaxation" link="/(root)/exercises/exercise" />
             </View>
           </View>
 
           {/* Article of the Day */}
           <View className="mt-3 mb-1 mx-3">
-            <Link href="/(root)/(other tabs)/articles" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">Статті дня</Link>
-            <ArticleCard id={1} link="/(root)/detailsElement/articleDetails" />
-            <ArticleCard id={2} link="/(root)/detailsElement/articleDetails" />
+            <Link href="/(root)/articles/articlesAll" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">Статті дня</Link>
+            <ArticleCard id={1} link="/(root)/articles/articleDetails" color="#003155" />
+            <ArticleCard id={2} link="/(root)/articles/articleDetails" color="#003155" />
           </View>
           
           {/* Цитата дня */}
@@ -60,7 +60,7 @@ export default function HomeScreen() {
             <View className="flex-row items-center">
               {/* Сповіщення */}
               <View>
-                <Link href="/(root)/(other tabs)/search">
+                <Link href="/(root)/(resultsSerch)/search">
                   <View className="w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border border-primary-dark-200 mr-8">
                     <Image
                       source={icon.search} 
@@ -72,12 +72,12 @@ export default function HomeScreen() {
             </View>
             </View>
 
-            <Post user_id={1} post_id={1} link="/(root)/detailsElement/postOther"/>
-            <Post user_id={2} post_id={2} link="/(root)/detailsElement/postOther"/>
-            <Post user_id={3} post_id={3} link="/(root)/detailsElement/postOther"/>
-            <Post user_id={4} post_id={4} link="/(root)/detailsElement/postOther"/>
-            <Post user_id={5} post_id={5} link="/(root)/detailsElement/postOther"/>
-            <Post user_id={6} post_id={6} link="/(root)/detailsElement/postOther"/> 
+            <Post user_id={1} post_id={1} link="/(root)/posts/post"/>
+            <Post user_id={2} post_id={2} link="/(root)/posts/postOther"/>
+            <Post user_id={3} post_id={3} link="/(root)/posts/postOther"/>
+            <Post user_id={4} post_id={4} link="/(root)/posts/postOther"/>
+            <Post user_id={5} post_id={5} link="/(root)/posts/postOther"/>
+            <Post user_id={6} post_id={6} link="/(root)/posts/postOther"/> 
            
         </ScrollView>
       </ImageBackground>

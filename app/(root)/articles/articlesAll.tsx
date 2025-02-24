@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const articles = () => {
+const articlesAll = () => {
   return (
     <View>
       <Text>articles</Text>
@@ -9,4 +9,4 @@ const articles = () => {
   )
 }
 
-export default articles
+export default articlesAll

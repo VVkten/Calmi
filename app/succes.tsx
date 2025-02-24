@@ -7,7 +7,7 @@ import { Link } from 'expo-router'
 const succes = () => {
   return (
     <ImageBackground
-      source={image.phonGreenPink} // Замініть на правильний шлях
+      source={image.phonGreenPink}
       className="flex-1"
       resizeMode="cover"
     >
