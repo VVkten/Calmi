@@ -7,7 +7,7 @@ import { Link } from 'expo-router';
 // Функція для обробки логіну
 const loginUser = async (email: string, password: string) => {
   try {
-    const response = await fetch('http://localhost:3001/auth/login', {  // Замініть на ваш URL
+    const response = await fetch('http://192.168.53.138:8000/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,18 +15,32 @@ const loginUser = async (email: string, password: string) => {
       body: JSON.stringify({ email, password }),
     });
 
+    // Перевіряємо статус відповіді
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Помилка HTTP: ${response.status}, відповідь: ${errorText}`);
+    }
+
+    // Перевіряємо, чи відповідь - JSON
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`Очікував JSON, але отримав: ${contentType}`);
+    }
+
+    // Обробляємо JSON
     const data = await response.json();
-    if (response.ok) {
-      return data;  // Повертаємо дані, наприклад, токен
+
+    if (data.jwt) {
+      console.log('Token:', data.jwt);
+      return { email: email};
     } else {
-      throw new Error(data.message || 'Login failed');
+      throw new Error(data.message || 'Помилка авторизації');
     }
   } catch (error: unknown) {
-    // Перевірка чи помилка є об'єктом типу Error
     if (error instanceof Error) {
-      throw new Error(error.message || 'Network error');
+      console.error('Помилка входу:', error.message);
     } else {
-      throw new Error('Unknown error occurred');
+      console.error('Невідома помилка');
     }
   }
 };
@@ -40,11 +54,15 @@ const login = () => {
       Alert.alert('Помилка', 'Будь ласка, введіть email та пароль');
       return;
     }
-
+  
     try {
-      const userData = await loginUser(email, password);
-      Alert.alert('Успішний вхід', `Вітаємо, ${userData.username}!`);
-      // Збережіть токен чи інші дані користувача
+      const userData = await loginUser(email, password); // Отримуємо дані користувача
+      if (userData) {
+        Alert.alert('Успішний вхід', `Вітаємо, ${userData.email}!`);
+      } else {
+        // Якщо userData є undefined, вивести помилку
+        Alert.alert('Помилка', 'Невідомий користувач або не вдалося отримати дані');
+      }
     } catch (error) {
       if (error instanceof Error) {
         Alert.alert('Помилка', error.message);
@@ -53,6 +71,7 @@ const login = () => {
       }
     }
   };
+  
 
   return (
     <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
