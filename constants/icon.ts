@@ -18,8 +18,10 @@ import unlikeTrue from "@/assets/icons/unlike-all.png";
 import comment from "@/assets/icons/comment.png";
 import share from "@/assets/icons/share.png";
 import all from "@/assets/icons/all.png";
+import settings from "@/assets/icons/settings.png";
 
 export default {
+    settings,
     google,
     home,
     search,
