@@ -2,37 +2,35 @@ import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, Image, Alert } from 'react-native';
 import image from '@/constants/image';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Функція для обробки логіну
-const loginUser = async (email: string, password: string) => {
+export const loginUser = async (email: string, password: string) => {
   try {
     const response = await fetch('http://192.168.53.138:8000/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email: email.toLowerCase(), password }),
     });
 
-    // Перевіряємо статус відповіді
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`Помилка HTTP: ${response.status}, відповідь: ${errorText}`);
     }
 
-    // Перевіряємо, чи відповідь - JSON
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
       throw new Error(`Очікував JSON, але отримав: ${contentType}`);
     }
 
-    // Обробляємо JSON
     const data = await response.json();
 
     if (data.jwt) {
-      console.log('Token:', data.jwt);
-      return { email: email};
+      await AsyncStorage.setItem('jwt', data.jwt);
+      console.log('Token збережено:', data.jwt);
+      return { email: email.toLowerCase() };
     } else {
       throw new Error(data.message || 'Помилка авторизації');
     }
@@ -45,9 +43,10 @@ const loginUser = async (email: string, password: string) => {
   }
 };
 
-const login = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter(); // Додаємо useRouter
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -56,11 +55,11 @@ const login = () => {
     }
   
     try {
-      const userData = await loginUser(email, password); // Отримуємо дані користувача
+      const userData = await loginUser(email, password);
       if (userData) {
         Alert.alert('Успішний вхід', `Вітаємо, ${userData.email}!`);
+        router.replace('./(root)/(tabs)/home'); // Переходимо на головну сторінку
       } else {
-        // Якщо userData є undefined, вивести помилку
         Alert.alert('Помилка', 'Невідомий користувач або не вдалося отримати дані');
       }
     } catch (error) {
@@ -71,7 +70,6 @@ const login = () => {
       }
     }
   };
-  
 
   return (
     <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
@@ -80,10 +78,10 @@ const login = () => {
         className="flex-1 bg-cover justify-center items-center" 
         style={{ width: '100%', height: '100%' }}
       >
-        <View className='flex-1 justify-center items-center'  style={{ top: -25 }}>
+        <View className='flex-1 justify-center items-center' style={{ top: -25 }}>
           {/* Лого */}
           <View className="items-center mb-6">
-            <View className="w-40 h-40 rounded-lg justify-center items-center overflow-hidden"  style={{ top: -25 }}>
+            <View className="w-40 h-40 rounded-lg justify-center items-center overflow-hidden" style={{ top: -25 }}>
               <Image 
                 source={image.iconplustext} 
                 className="w-full h-full object-contain rounded-lg"
@@ -92,7 +90,7 @@ const login = () => {
           </View>
 
           {/* Вхід */}
-          <Text className="text-2xl font-ubuntu-medium text-primary-dark-100 mb-4"  style={{ top: -10 }}>Вхід</Text>
+          <Text className="text-2xl font-ubuntu-medium text-primary-dark-100 mb-4" style={{ top: -10 }}>Вхід</Text>
 
           {/* Поля вводу */}
           <TextInput 
@@ -111,7 +109,7 @@ const login = () => {
             style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
           />
 
-          {/* Забули пароль (зліва) */}
+          {/* Забули пароль */}
           <Link href="/forgotpassword" className="text-sm text-primary-dark-200 ml-2 font-ubuntu-medium self-start">Забули пароль?</Link>
 
           {/* Кнопка входу */}
@@ -123,7 +121,7 @@ const login = () => {
             <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Увійти</Text>
           </TouchableOpacity>
 
-          {/* Реєстрація (внизу екрану) */}
+          {/* Реєстрація */}
           <Text className="text-sm font-ubuntu-medium text-primary-dark-200 absolute bottom-6"
             style={{ zIndex: 1 }} >
             Не маєте акаунту?{' '}
@@ -136,4 +134,4 @@ const login = () => {
   );
 }
 
-export default login;
+export default Login;

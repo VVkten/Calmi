@@ -29,12 +29,12 @@ export default function Index() {
 
           {/* Кнопка переходу з обводкою та заливкою */}
           <TouchableOpacity className=" w-[180px] bg-blue-100 border border-primary-dark-400 px-8 py-3 rounded-2xl mt-20 shadow-sm shadow-primary-dark-200">
-            <Link href="/login" className="text-center text-primary-dark-200 text-lg font-ubuntu-medium px-8">
+            <Link href="../login" className="text-center text-primary-dark-200 text-lg font-ubuntu-medium px-8">
               Увійти
             </Link>
           </TouchableOpacity>
 
-          <Link href="/(root)/(tabs)/home" className="text-blue-700 font-ubuntu-bold mt-4">Home Screen</Link>
+          {/* <Link href="/(root)/(tabs)/home" className="text-blue-700 font-ubuntu-bold mt-4">Home Screen</Link> */}
         </View>
       </ImageBackground>
     </SafeAreaView>
