@@ -3,12 +3,12 @@ import React from 'react'
 import image from '@/constants/image'
 import { Link } from 'expo-router';
 
-interface TestProps {
-  test_id: number;
+interface ExerciseProps {
+  exercise_id: number;
   link: string;
 }
 
-const testLink: React.FC<TestProps> = ({ test_id, link }) => {
+const testLink: React.FC<ExerciseProps> = ({ exercise_id, link }) => {
   return (
      <Link href={link} asChild>
       <TouchableOpacity onPress={() => { }} className='w-full h-24 mb-2 border border-green-700 rounded-lg'>
@@ -17,7 +17,7 @@ const testLink: React.FC<TestProps> = ({ test_id, link }) => {
           className='w-full h-full '
         >
           <View className='flex justify-center items-center w-full h-full bg-black/25 rounded-md'>
-            <Text className='text-green-100 text-lg font-bold'>Перейти до тесту {test_id}</Text>
+            <Text className='text-green-100 text-lg font-bold'>Перейти до вправи {exercise_id}</Text>
           </View>
         </ImageBackground>
       </TouchableOpacity>

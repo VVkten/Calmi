@@ -20,6 +20,15 @@ import phonGreenDot from "@/assets/images/phon-green-dot.jpg";
 import phonPeach1 from "@/assets/images/phon-peach-1.png";
 import phonPeach2 from "@/assets/images/phon-peach-2.png";
 import phonPeach3 from "@/assets/images/phon-peach-3.png";
+import phomonWhitePinkDot from "@/assets/images/phon-white-pink-dot.jpg";
+import phonPinkDot from "@/assets/images/phon-pink-dot.jpg";
+import phonDarkPink from "@/assets/images/phon-dark-pink.jpg";
+import phonPinkPink from "@/assets/images/phon-pinkpink.jpg";
+import phonPingPurp from "@/assets/images/phon-ping-purp.jpg";
+import phonPinkWhiteDot from "@/assets/images/phon-pink-white-dot.jpg";
+import phonOrng from "@/assets/images/phon-orng.jpg";
+import phonGreenWhite from "@/assets/images/phon-green-white.jpg";
+import phonPinkVerh from "@/assets/images/phon-pink-verh.jpg";
 
 export default {
     logoStandart,
@@ -44,4 +53,13 @@ export default {
     phonPeach2,
     phonPeach3,
     logotextGreen,
+    phomonWhitePinkDot,
+    phonPinkDot,
+    phonDarkPink,
+    phonPinkPink,
+    phonPingPurp,
+    phonPinkWhiteDot,
+    phonOrng,
+    phonGreenWhite,
+    phonPinkVerh
 };

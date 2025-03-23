@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const loginUser = async (email: string, password: string) => {
   try {
-    const response = await fetch('http://10.5.50.115:8080/api/login/', {
+    const response = await fetch('http://192.168.43.138:8080/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const loginUser = async (email: string, password: string) => {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter(); // Додаємо useRouter
+  const router = useRouter();
 
   const handleLogin = async () => {
     if (!email || !password) {

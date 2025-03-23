@@ -60,6 +60,16 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
+          name="exercise"
+          options={{
+            title: "exercise",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} icon={icons.exr} />
+            ),
+          }}
+        />
+        <Tabs.Screen
           name="book"
           options={{
             title: "book",
@@ -69,16 +79,16 @@ const TabsLayout = () => {
             ),
           }}
         />
-        <Tabs.Screen
-          name="forum"
+        {/* <Tabs.Screen
+          name="tests"
           options={{
-            title: "forum",
+            title: "tests",
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} icon={icons.comment} />
+              <TabIcon focused={focused} icon={icons.tests} />
             ),
           }}
-        />
+        /> */}
         <Tabs.Screen
           name="help"
           options={{

@@ -4,7 +4,6 @@ import { Link, router } from 'expo-router'
 import image from '@/constants/image'
 import icon from '@/constants/icon'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Post from "../../../components/post";
 import Header from "../../../components/header";
 import ExerciseCard from "../../../components/exerciseCard";
 import ArticleCard from "../../../components/articleCard";
@@ -19,13 +18,15 @@ const book = () => {
         resizeMode="cover"
       >
         <View className="flex-row justify-between items-center p-4 w-full">
-              <View className="w-[125px] h-14">
+              <View className="w-[120px] h-14">
                 <Image 
                   source={image.logotextGreen} 
                   className="w-full h-full object-contain rounded-lg"
                 />
               </View>
           </View>
+
+          {/* <Header/> */}
 
         <ScrollView 
           className="flex-1 p-2 mt-2"
@@ -57,8 +58,8 @@ const book = () => {
 
           <View className="mt-3 mb-1 mx-3">
             <Link href="/(root)/articles/articlesAll" className="text-xl font-ubuntu-bold text-green-800 ml-2">Тести</Link>
-            <TestLink/>
-            <TestLink/>
+            <TestLink link='/(root)/test/tests' test_id={1} />
+            <TestLink link='/(root)/test/tests' test_id={2} />
           </View>
 
           {/* Популярні статті */}
@@ -68,10 +69,6 @@ const book = () => {
             <ArticleCard id={2} link="/(root)/articles/articleDetails" color="#166534"/>
           </View>
 
-          
-
-    
-          
         </ScrollView>
       </ImageBackground>
     </SafeAreaView>

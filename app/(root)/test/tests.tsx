@@ -2,12 +2,12 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const forum = () => {
+const tests = () => {
   return (
     <SafeAreaView>
-      <Text>Forum</Text>
+      <Text>Test</Text>
     </SafeAreaView>
   )
 }
 
-export default forum
+export default tests

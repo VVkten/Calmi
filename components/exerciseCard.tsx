@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { Link } from 'expo-router';
+import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
 
 interface ExerciseCardProps {
-  icon: any;
+  icon: { uri: string };
   title: string;
   link: string;
 }

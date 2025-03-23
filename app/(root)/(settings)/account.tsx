@@ -29,7 +29,7 @@ const Account: React.FC = () => {
           return;
         }
 
-        const response = await fetch('http://10.5.50.115:8080/api/user/', {
+        const response = await fetch('http://192.168.43.138:8080/api/user/', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -137,7 +137,7 @@ const Account: React.FC = () => {
 
         {/* Нижнє меню */}
         <View className="absolute bottom-5 flex-row space-x-4">
-          <Link href="/forum" className="text-primary-dark-200 text-sm mr-2">FAQ</Link>
+          <Link href="/(root)/test/tests" className="text-primary-dark-200 text-sm mr-2">FAQ</Link>
           <Text className="text-gray-700 text-sm">|</Text>
           <Link href="/(root)/(resultsSerch)/search" className="text-primary-dark-200 text-sm ml-2">Support</Link>
         </View>
