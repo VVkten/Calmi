@@ -1,4 +1,4 @@
-import { View, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity, Switch, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -92,55 +92,63 @@ const Account: React.FC = () => {
         className="flex-1 w-full h-full items-center p-5"
         resizeMode="cover"
       >
-        {/* Фото профілю */}
-        <Image
-          source={userData.avatar ? { uri: userData.avatar } : DEFAULT_AVATAR}
-          className="w-48 h-48 mt-5 rounded-full border-2 border-primary-dark-200"
-        />
+        <ScrollView
+         className=''
+         showsVerticalScrollIndicator={false}
+         contentContainerStyle={{ paddingBottom: 10 }} 
+        >
 
-        {/* Ім'я */}
-        <View className='w-full ml-[10%]'>
-          <Text className="text-lg font-ubuntu-light mt-4 items-start text-primary-dark-100">Ім'я</Text>
-          <View className='bg-white rounded-md w-[90%] text-center p-2 border border-primary-dark-200'>
-            <Text className="text-xl font-ubuntu-regular text-primary-dark-100">{userData.name}</Text>
-          </View>
-        </View>
-
-        {/* Email */}
-        <View className='w-full ml-[10%]'>
-          <Text className="text-lg font-ubuntu-light mt-4 items-start text-primary-dark-100">Електрона адреса</Text>
-          <View className='bg-white rounded-md w-[90%] text-center p-2 border border-primary-dark-200'>
-            <Text className="text-xl font-ubuntu-regular text-primary-dark-100">{userData.email}</Text>
-          </View>
-        </View>
-
-        <View className='mt-8 flex-row w-[90%] justify-between items-center text-center'>
-          {/* Кнопка редагування */}
-          <Link href="/(root)/(resultsSerch)/search" className="px-4 py-2 bg-white border border-primary-dark-200 rounded-lg text-primary-dark-200 font-ubuntu-medium text-lg w-[45%]">
-            Редагувати
-          </Link>
-          <Link href="/(root)/(resultsSerch)/search">
-            <View className="w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border border-primary-dark-200 mr-8">
-              <Image
-                source={icon.settings} 
-                tintColor="#03528C"
-                className="w-8 h-8"
-              />
+        <View className='flex-1 m-0'>
+          {/* Фото профілю */}
+          <View className="flex-row items-center self-center mt-5">
+            {/* Фото профілю */}
+            <Image
+              source={userData.avatar ? { uri: userData.avatar } : DEFAULT_AVATAR}
+              className="w-36 h-36 rounded-full border-2 border-primary-dark-200"
+            />
+            
+            {/* Ім'я та email справа */}
+            <View className="ml-4">
+              <Text className="text-xl font-ubuntu-regular text-primary-dark-100">{userData.name}</Text>
+              <Text className="text-lg font-ubuntu-regular text-primary-dark-200">{userData.email}</Text>
             </View>
-          </Link>
-        </View>
+          </View>
 
-        {/* Кнопка виходу */}
-        <TouchableOpacity onPress={handleLogout} className="px-4 py-2 bg-red-600 border border-primary-dark-200 rounded-lg text-white font-ubuntu-medium text-lg mt-8">
-          <Text>Вихід</Text>
-        </TouchableOpacity>
+         {/* <View className="mt-[20%] w-full h-[40%]">
+            <Link href="/" className="flex-row-reverse justify-between items-center py-3 border-b border-blue-900">
+              <Text className="text-lg text-primary-dark-200">Change password</Text>
+              <Image source={icon.account} className="w-5 h-5" />
+            </Link>
 
-        {/* Нижнє меню */}
-        <View className="absolute bottom-5 flex-row space-x-4">
-          <Link href="/(root)/test/tests" className="text-primary-dark-200 text-sm mr-2">FAQ</Link>
-          <Text className="text-gray-700 text-sm">|</Text>
-          <Link href="/(root)/(resultsSerch)/search" className="text-primary-dark-200 text-sm ml-2">Support</Link>
+            <TouchableOpacity onPress={handleLogout} className="flex-row justify-between items-center py-3 border-b border-blue-900">
+              <Text className="text-lg text-primary-dark-200">Log out</Text>
+              <Image source={icon.account} className="w-5 h-5" />
+            </TouchableOpacity>
+
+            <Link href="/" className="flex-row justify-between items-center py-3 border-b border-blue-900">
+              <Text className="text-lg text-primary-dark-200">Delete account</Text>
+              <Image source={icon.account} className="w-5 h-5" />
+            </Link>          
+
+            <Link href="/" className="flex-row justify-between items-center py-3 border-b border-blue-900">
+              <Text className="text-lg text-primary-dark-200">Update the app</Text>
+              <Text className="text-lg text-gray-500">1.0.0.v</Text>
+            </Link>
+
+            <Link href="/" className="py-3">
+              <Text className="text-lg text-primary-dark-200">Community support</Text>
+            </Link>
+          </View> */}
+
+         
+          <View className="w-full h-6 mt-[180%] mb-0 flex-row justify-center items-center">
+            <Link href="/(root)/test/tests" className="text-primary-dark-200 text-sm mx-2">FAQ</Link>
+            <Text className="text-gray-700 text-sm">|</Text>
+            <Link href="/(root)/(resultsSerch)/search" className="text-primary-dark-200 text-sm mx-2">Support</Link>
+          </View>
+
         </View>
+        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
   );

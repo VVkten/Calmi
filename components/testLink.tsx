@@ -1,23 +1,26 @@
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
-import image from '@/constants/image'
+import images from '@/constants/image'
 import { Link } from 'expo-router';
 
 interface TestProps {
-  test_id: number;
   link: string;
+  title: string;
+  image: { uri: string } | null;
+  color: string;
 }
 
-const testLink: React.FC<TestProps> = ({ test_id, link }) => {
+const TestLink: React.FC<TestProps> = ({ title, image, link, color }) => {
   return (
-     <Link href={link} asChild>
-      <TouchableOpacity onPress={() => { }} className='w-full h-24 mb-2 border border-green-700 rounded-lg'>
+    <Link href={link} asChild>
+      <TouchableOpacity onPress={() => { }} className='w-full h-24 mb-2 border rounded-lg' style={{ borderColor: color }}>
+        {/* Перевіряємо чи є зображення */}
         <ImageBackground
-          source={image.family} // Ваше зображення
+          source={image?.uri ? { uri: image.uri } : images.phonOrngYel} // Якщо зображення є, використовуємо його, інакше фон-заповнювач
           className='w-full h-full '
         >
-          <View className='flex justify-center items-center w-full h-full bg-black/25 rounded-md'>
-            <Text className='text-green-100 text-lg font-bold'>Перейти до тесту {test_id}</Text>
+          <View className='flex justify-center items-center w-full h-full bg-white/25 rounded-md'>
+            <Text className='text-amber-700 text-lg font-ubuntu-bold'>{title}</Text>
           </View>
         </ImageBackground>
       </TouchableOpacity>
@@ -25,4 +28,4 @@ const testLink: React.FC<TestProps> = ({ test_id, link }) => {
   )
 }
 
-export default testLink
+export default TestLink

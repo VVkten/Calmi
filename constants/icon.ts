@@ -23,6 +23,10 @@ import tests from "@/assets/icons/test.png";
 import exr from "@/assets/icons/exr.png";
 import comm from "@/assets/icons/comm.png";
 import phon from "@/assets/icons/phon.png";
+import tick from "@/assets/icons/tick.png";
+import report from "@/assets/icons/report.png";
+import robotHappy from "@/assets/icons/emoji-robot-happy.png";
+import robotDead from "@/assets/icons/robot-dead.png";
 
 export default {
     settings,
@@ -49,5 +53,9 @@ export default {
     tests,
     exr,
     comm,
-    phon
+    phon,
+    tick,
+    report,
+    robotHappy, 
+    robotDead
 };

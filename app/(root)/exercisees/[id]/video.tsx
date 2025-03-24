@@ -9,11 +9,13 @@ import { Stack } from "expo-router";
 import { Video } from "expo-av";
 import { useRouter } from "expo-router"; // Імпортуємо useRouter для навігації
 
-export default function ExerciseDetail() {
+export default function ExerciseVideo() {
   const { id } = useLocalSearchParams();
   const [exercise, setExercise] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter(); // Ініціалізуємо router для навігації
+
+  console.log('IDIDIDIDDID', id)
 
   useEffect(() => {
     const fetchExercise = async () => {
@@ -42,11 +44,6 @@ export default function ExerciseDetail() {
     return <ActivityIndicator size="large" color="#0000ff" className="flex justify-center items-center h-full" />;
   }
 
-  const navigateToVideo = () => {
-    console.log(`Navigating to video for exercise: ${exercise.id}`);
-    // router.push(`/exercisees/${id}/video`);
-    router.push('/exercisees/exerciesError');
-  };
 
   return (
     <>
@@ -57,32 +54,8 @@ export default function ExerciseDetail() {
           <ScrollView className="flex-1 p-5">
             <View className="p-4 mb-10 mx-0">
               <View>
-                <Text className="text-2xl font-ubuntu-bold text-green-900">{exercise.name}</Text>
-                <View className="flex-row items-center mt-3">
-                  <Text className="text-lg text-green-900 font-ubuntu-medium">CalMi</Text>
-                  <Image source={icon.tick} className="w-6 h-6 ml-2" />
-                </View>
-                <Text className="text-sm font-ubuntu-regular mt-3 text-green-900">{exercise.description}</Text>
-              </View>
 
-              <View className="mt-5 items-center">
-                <Image source={{ uri: `http://192.168.43.138:8080${exercise.image}` }} className="w-96 h-96 rounded-xl" />
-              </View>
-
-              {/* <View className="items-end mt-4 mx-0">
-                <Image source={icon.share} className="w-10 h-10" tintColor="#14532d"/>
-                <Image source={icon.report} className="w-10 h-10" tintColor="#14532d" />
-              </View> */}
-
-              {/* Кнопка для переходу на відео сторінку */}
-              <View className="mt-14 w-[80%] items-center ml-[10%]">
-                <TouchableOpacity
-                  onPress={navigateToVideo} 
-                  className="bg-green-50 p-5 rounded-2xl items-center border border-green-900"
-                >
-                  <Text className="text-base font-ubuntu-medium text-green-950">Розпочати вправу</Text>
-                </TouchableOpacity>
-              </View>
+             </View>              
             </View>
           </ScrollView>
         </ImageBackground>

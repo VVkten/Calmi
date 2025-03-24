@@ -12,11 +12,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_BASE_URL = "http://192.168.43.138:8080/api";
 
-
 export default function HomeScreen() {
   const [exercises, setExercises] = useState([]);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Функція для вибору випадкових елементів з масиву
+  const getRandomItems = (arr, numItems) => {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, numItems);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +60,6 @@ export default function HomeScreen() {
     fetchData();
   }, []);
 
-
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground source={image.phonStandart} className="flex-1 w-full h-full" resizeMode="cover">
@@ -68,29 +72,29 @@ export default function HomeScreen() {
             <>
               {/* Популярні вправи */}
               <View>
-                <Link href="/(root)/exercises/exerciseAll" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
+                <Link href="/exercise" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
                   Популярні вправи
                 </Link>
 
                 <View className="flex-row justify-between mt-2 m-2">
-                  {exercises.slice(0, 3).map((exercise) => (
-                      <ExerciseCard 
-                      key={exercise.id} 
-                      icon={{ uri: exercise.image ? `${API_BASE_URL}${exercise.image}` : "URL_ЗОБРАЖЕННЯ_ЗАМОВЧУВАННЯ" }} 
-                      title={exercise.name} 
-                      link={`/(root)/exercisees/${exercise.id}`} 
-                    />   
-))}
+                  {getRandomItems(exercises, 3).map((exercise) => (
+                    <ExerciseCard
+                      key={exercise.id}
+                      icon={{ uri: exercise.image ? `${API_BASE_URL}${exercise.image}` : "URL_ЗОБРАЖЕННЯ_ЗАМОВЧУВАННЯ" }}
+                      title={exercise.name}
+                      link={`/(root)/exercisees/${exercise.id}`}
+                    />
+                  ))}
                 </View>
               </View>
 
               {/* Статті дня */}
-              <View className="mt-3 mb-1 mx-3">
-                <Link href="/(root)/articles/articlesAll" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
+              <View className="mt-3 mb-[8%] mx-3">
+                <Link href="/book" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
                   Статті дня
                 </Link>
 
-                {articles.slice(0, 2).map((article) => (
+                {getRandomItems(articles, 2).map((article) => (
                   <ArticleCard key={article.id} id={article.id} title={article.title} description={article.description} link={`/(root)/articles/${article.id}`} color="#003155" />
                 ))}
               </View>

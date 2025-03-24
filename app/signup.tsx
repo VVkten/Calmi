@@ -14,53 +14,73 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const router = useRouter();
 
+  // Перевірка правильності email
+  const isValidEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
+  };
+
+  // Перевірка правильності пароля
+  const isValidPassword = (password) => {
+    const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    return passwordPattern.test(password);
+  };
+
   // Функція для реєстрації користувача
   const registerUser = async () => {
     if (!name || !email || !password || !confirmPassword) {
       Alert.alert('Помилка', 'Будь ласка, заповніть всі поля');
       return;
     }
-  
+
+    if (!isValidEmail(email)) {
+      Alert.alert('Помилка', 'Будь ласка, введіть коректну електронну адресу');
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      Alert.alert('Помилка', 'Пароль повинен містити не менше 8 символів, включаючи число та спеціальний символ.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       Alert.alert('Помилка', 'Паролі не співпадають');
       return;
     }
-  
+
     try {
       console.log("Відправка запиту на реєстрацію...");
-      const response = await fetch('http://10.5.50.115:8080/api/register/', {
+      const response = await fetch('http://192.168.43.138:8080/api/register/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name, email: email.toLowerCase(), password }),
       });
-  
+
       // Логування статусу відповіді
       console.log('Статус відповіді:', response.status);
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         console.log('Текст помилки від сервера:', errorText);
         throw new Error(`Помилка HTTP: ${response.status}, відповідь: ${errorText}`);
       }
-  
+
       const data = await response.json();  // Читання JSON відповіді
       console.log("Отримані дані:", data);
-  
+
       // Якщо сервер повертає коректні дані, реєстрація успішна
       if (data.email && data.id) {
         // Збереження токену, якщо він є
         if (data.jwt) {
           await AsyncStorage.setItem('jwt', data.jwt);
         }
-  
-        // Alert.alert('Успіх', 'Реєстрація пройшла успішно!');
-  
+
         // Автоматичний вхід після реєстрації
         const userData = await loginUser(email, password);
         console.log("Дані користувача після входу:", userData);
-  
+
         if (userData) {
           Alert.alert('Успішний вхід', `Вітаємо, ${userData.email}!`);
           router.replace('/home'); // Navigate to home
@@ -75,7 +95,6 @@ const Signup = () => {
       Alert.alert('Помилка', error.message);
     }
   };
-  
 
   return (
     <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
