@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
-import image from '@/constants/image'
+import images from '@/constants/image'
 import { Link } from 'expo-router';
 
 interface ExerciseProps {
@@ -14,7 +14,7 @@ const ExerciseLink: React.FC<ExerciseProps> = ({ exercise_id, image, link, title
      <Link href={link} asChild>
       <TouchableOpacity onPress={() => { }} className='w-full h-24 mb-2 border border-green-700 rounded-lg'>
         <ImageBackground
-          source={image} // Ваше зображення
+          source={images.phonGreenBlue} // Ваше зображення
           className='w-full h-full rounded-lg'
         >
           <View className='flex justify-center items-center w-full h-full bg-black/25 rounded-md'>
