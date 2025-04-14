@@ -9,7 +9,7 @@ import { Stack } from "expo-router";
 import { Video } from "expo-av";
 import { useRouter } from "expo-router"; // Імпортуємо useRouter для навігації
 
-const API_BACK = 'http://192.168.43.138:8080/api/exercise/'
+const API_BASE_URL = "http://192.168.46.138:8080/api/exercise/";
 
 export default function ExerciseDetail() {
   const { id } = useLocalSearchParams();
@@ -21,7 +21,7 @@ export default function ExerciseDetail() {
     const fetchExercise = async () => {
       try {
         const token = await AsyncStorage.getItem("jwt");
-        const response = await fetch(`${API_BACK}${id}/`, {
+        const response = await fetch(`${API_BASE_URL}${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export default function ExerciseDetail() {
               </View>
 
               <View className="mt-5 items-center">
-                <Image source={{ uri: `http://192.168.43.138:8080${exercise.image}` }} className="w-96 h-96 rounded-xl" />
+                <Image source={{ uri: `http://192.168.46.138:8080${exercise.image}` }} className="w-96 h-96 rounded-xl" />
               </View>
 
               {/* <View className="items-end mt-4 mx-0">

@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser } from './login';
 import { Ionicons } from '@expo/vector-icons';
 
-const API_BACK = 'http://192.168.46.138:8080/api/register/';
+const API_BASE_URL = "http://192.168.46.138:8080/api/register/";
 
 const Signup = () => {
   const [step, setStep] = useState(1);
@@ -66,7 +66,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(API_BACK, {
+      const response = await fetch(API_BASE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

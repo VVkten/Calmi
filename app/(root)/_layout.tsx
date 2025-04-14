@@ -3,6 +3,9 @@ import { Stack, useRouter, useSegments } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+
+const API_BASE_URL = "http://192.168.46.138:8080/api/";
 
 export default function AppLayout() {
   const [loading, setLoading] = useState(true);
@@ -15,9 +18,24 @@ export default function AppLayout() {
       try {
         const token = await AsyncStorage.getItem("jwt");
         console.log('Токен з AsyncStorage:', token);
-        setIsLogged(!!token);
+
+        if (token) {
+          // Перевірка токена через API
+          const response = await axios.get(`${API_BASE_URL}user/`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (response.status === 200) {
+            setIsLogged(true);
+          } else {
+            setIsLogged(false);
+          }
+        } else {
+          setIsLogged(false);
+        }
       } catch (error) {
-        console.error("Failed to read token:", error);
+        console.log("Failed to read token:", error);
         setIsLogged(false);
       } finally {
         setLoading(false);
@@ -46,7 +64,5 @@ export default function AppLayout() {
     );
   }
 
-  return <Stack screenOptions={{
-    headerShown: false,  // Вимикає заголовки для всіх екранів в цьому Stack
-  }}/>;
+  return <Stack screenOptions={{ headerShown: false }} />;
 }

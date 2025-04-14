@@ -4,7 +4,7 @@ import { Link, router } from 'expo-router';
 import image from '@/constants/image';
 
 
-const API_BACK = 'http://192.168.46.138:8080/api/';
+const API_BASE_URL = "http://192.168.46.138:8080/api";
 
 
 interface SendCodeResponse {
@@ -25,7 +25,7 @@ interface ResetPasswordResponse {
 
 const sendCode = async (email: string): Promise<SendCodeResponse> => {
   try {
-    const response = await fetch(`${API_BACK}send-code/`, {
+    const response = await fetch(`${API_BASE_URL}send-code/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const sendCode = async (email: string): Promise<SendCodeResponse> => {
 
 const verifyCode = async ( email: string, code: string, setToken: (token: string) => void): Promise<VerifyCodeResponse> => {
   try {
-    const response = await fetch(`${API_BACK}verify-code/`, {
+    const response = await fetch(`${API_BASE_URL}verify-code/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const verifyCode = async ( email: string, code: string, setToken: (token: string
 
 const resetPassword = async (email: string, newPassword: string, token: string): Promise<ResetPasswordResponse> => {
   try {
-    const response = await fetch(`${API_BACK}reset-password/`, {
+    const response = await fetch(`${API_BASE_URL}reset-password/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
