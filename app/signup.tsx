@@ -175,10 +175,14 @@ const Signup = () => {
 
               {/* Вибір статі */}
               <View className="mb-8 flex-row justify-between">
-                <TouchableOpacity onPress={() => setsex('Чоловіча')} className="w-[150px] bg-[#ffffffc6] p-4 rounded-xl shadow-md">
-                  <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Чоловіча</Text>
+                <TouchableOpacity 
+                onPress={() => setsex('Чоловіча')} 
+                className={`w-[150px] bg-[#ffffffc6] p-4 rounded-xl border ${sex === 'Чоловіча' ? 'border-primary-dark-200' : 'border-transparent'}`}>
+                  <Text className="text-center text-lg  font-ubuntu-medium text-primary-dark-100">Чоловіча</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setsex('Жіноча')} className="w-[150px] bg-[#ffffffc6] p-4 rounded-xl shadow-md">
+                <TouchableOpacity 
+                onPress={() => setsex('Жіноча')} 
+                className={`w-[150px] bg-[#ffffffc6] ml-5 p-4 rounded-xl border ${sex === 'Жіноча' ? 'border-primary-dark-200' : 'border-transparent'}`}>
                   <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Жіноча</Text>
                 </TouchableOpacity>
               </View>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import { Link, router } from 'expo-router';
+import image from '@/constants/image';
 
 
 const API_BACK = 'http://192.168.46.138:8080/api/';
@@ -174,7 +175,7 @@ const ResetPasswordForm: React.FC = () => {
   return (
     <SafeAreaView className="flex-1 justify-center items-center bg-blue-100">
       <ImageBackground 
-        source={{ uri: 'your-image-url' }} 
+        source={image.phonGreen} 
         className="flex-1 bg-cover justify-center items-center" 
         style={{ width: '100%', height: '100%' }}
       >
@@ -194,7 +195,7 @@ const ResetPasswordForm: React.FC = () => {
             />
             <TouchableOpacity 
               onPress={handleSendCode} 
-              className="w-[200px] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+              className="w-[200px] ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
             >
               <Text className="text-center text-lg font-ubuntu-medium text-green-900">Надіслати код</Text>
             </TouchableOpacity>
@@ -213,7 +214,7 @@ const ResetPasswordForm: React.FC = () => {
             />
             <TouchableOpacity 
               onPress={handleVerifyCode} 
-              className="w-[200px] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+              className="w-[200px]  ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
             >
               <Text className="text-center text-lg font-ubuntu-medium text-green-900">Перевірити код</Text>
             </TouchableOpacity>
@@ -250,7 +251,7 @@ const ResetPasswordForm: React.FC = () => {
 
             <TouchableOpacity 
               onPress={handleResetPassword} 
-              className="w-[200px] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+              className="w-[200px]  ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
             >
               <Text className="text-center text-lg font-ubuntu-medium text-green-900">Змінити пароль</Text>
             </TouchableOpacity>
