@@ -6,7 +6,7 @@ import ExerciseCard from '@/components/exerciseCard';
 import ExerciseLong from '@/components/exclinklong';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_BASE_URL = "http://192.168.43.138:8080/api";
+const API_BASE_URL = "http://192.168.46.138:8080/api";
 
 const getRandomItems = (arr, numItems) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());

@@ -5,6 +5,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser } from './login';
+import { Ionicons } from '@expo/vector-icons';
+
+const API_BACK = 'http://192.168.46.138:8080/api/register/';
 
 const Signup = () => {
   const [step, setStep] = useState(1);
@@ -12,23 +15,32 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [sex, setsex] = useState('');
+  const [birthMonth, setBirthMonth] = useState('');
+  const [birthDay, setBirthDay] = useState('');
+  const [birthYear, setBirthYear] = useState('');
   const router = useRouter();
 
-  // Перевірка правильності email
-  const isValidEmail = (email) => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailPattern.test(email);
+  const isValidEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
+
+  const isValidPassword = (password) =>
+    /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password);
+
+  const isValidDOB = (brdate) => {
+    const today = new Date();
+    const birthDate = new Date(brdate);
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      return age - 1 >= 16;
+    }
+    return age >= 16;
   };
 
-  // Перевірка правильності пароля
-  const isValidPassword = (password) => {
-    const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-    return passwordPattern.test(password);
-  };
-
-  // Функція для реєстрації користувача
   const registerUser = async () => {
-    if (!name || !email || !password || !confirmPassword) {
+    const composedBrdate = `${birthYear}-${birthMonth.padStart(2, '0')}-${birthDay.padStart(2, '0')}`;
+
+    if (!name || !email || !password || !confirmPassword || !birthYear || !birthMonth || !birthDay || !sex) {
       Alert.alert('Помилка', 'Будь ласка, заповніть всі поля');
       return;
     }
@@ -48,42 +60,36 @@ const Signup = () => {
       return;
     }
 
+    if (!isValidDOB(composedBrdate)) {
+      Alert.alert('Помилка', 'Ви повинні бути старше 16 років, щоб зареєструватися.');
+      return;
+    }
+
     try {
-      console.log("Відправка запиту на реєстрацію...");
-      const response = await fetch('http://192.168.43.138:8080/api/register/', {
+      const response = await fetch(API_BACK, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email: email.toLowerCase(), password }),
+        body: JSON.stringify({ name, email: email.toLowerCase(), password, brdate: composedBrdate, sex }),
       });
-
-      // Логування статусу відповіді
-      console.log('Статус відповіді:', response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.log('Текст помилки від сервера:', errorText);
         throw new Error(`Помилка HTTP: ${response.status}, відповідь: ${errorText}`);
       }
 
-      const data = await response.json();  // Читання JSON відповіді
-      console.log("Отримані дані:", data);
+      const data = await response.json();
 
-      // Якщо сервер повертає коректні дані, реєстрація успішна
       if (data.email && data.id) {
-        // Збереження токену, якщо він є
         if (data.jwt) {
           await AsyncStorage.setItem('jwt', data.jwt);
         }
 
-        // Автоматичний вхід після реєстрації
         const userData = await loginUser(email, password);
-        console.log("Дані користувача після входу:", userData);
-
         if (userData) {
           Alert.alert('Успішний вхід', `Вітаємо, ${userData.email}!`);
-          router.replace('/home'); // Navigate to home
+          router.replace('/home');
         } else {
           Alert.alert('Помилка', 'Не вдалося увійти після реєстрації');
         }
@@ -106,15 +112,11 @@ const Signup = () => {
         <View className='flex-1 justify-center items-center'>
           <View className="items-center mb-10">
             <View className="w-32 h-32 rounded-lg justify-center items-center overflow-hidden">
-              <Image 
-                source={image.iconplustext} 
-                className="w-full h-full object-contain rounded-lg"
-              />
+              <Image source={image.iconplustext} className="w-full h-full object-contain rounded-lg" />
             </View>
           </View>
-                    
+
           {step === 1 ? (
-            // Перша форма
             <>
               <View className="mb-10">
                 <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Ім'я </Text>
@@ -122,10 +124,9 @@ const Signup = () => {
                   placeholder="Введіть ваше ім'я"
                   value={name}
                   onChangeText={setName}
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
-                <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть повне ім'я</Text>
               </View>
 
               <View className="mb-10">
@@ -135,10 +136,51 @@ const Signup = () => {
                   value={email}
                   onChangeText={setEmail}
                   keyboardType="email-address"
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
-                <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Введіть свою електронну адресу</Text>
+              </View>
+
+              {/* Дата народження */}
+              <View className="mb-10 w-[320px]">
+                <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Дата народження</Text>
+                <View className="flex-row justify-between">
+                  <TextInput
+                    placeholder="MM"
+                    keyboardType="numeric"
+                    maxLength={2}
+                    value={birthMonth}
+                    onChangeText={setBirthMonth}
+                    className="w-[90px] bg-[#ffffffac] p-4 rounded-xl text-center shadow-sm border border-primary-dark-400"
+                  />
+                  <TextInput
+                    placeholder="DD"
+                    keyboardType="numeric"
+                    maxLength={2}
+                    value={birthDay}
+                    onChangeText={setBirthDay}
+                    className="w-[90px] bg-[#ffffffac] p-4 rounded-xl text-center shadow-sm border border-primary-dark-400"
+                  />
+                  <TextInput
+                    placeholder="YYYY"
+                    keyboardType="numeric"
+                    maxLength={4}
+                    value={birthYear}
+                    onChangeText={setBirthYear}
+                    className="w-[110px] bg-[#ffffffac] p-4 rounded-xl text-center shadow-sm border border-primary-dark-400"
+                  />
+                </View>
+                <Text className="font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Формат: ММ / ДД / РРРР</Text>
+              </View>
+
+              {/* Вибір статі */}
+              <View className="mb-8 flex-row justify-between">
+                <TouchableOpacity onPress={() => setsex('Чоловіча')} className="w-[150px] bg-[#ffffffc6] p-4 rounded-xl shadow-md">
+                  <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Чоловіча</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setsex('Жіноча')} className="w-[150px] bg-[#ffffffc6] p-4 rounded-xl shadow-md">
+                  <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Жіноча</Text>
+                </TouchableOpacity>
               </View>
 
               <TouchableOpacity onPress={() => setStep(2)} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-10 rounded-xl shadow-md">
@@ -153,7 +195,6 @@ const Signup = () => {
               </View>
             </>
           ) : (
-            // Друга форма
             <>
               <View className="mb-8">
                 <Text className="text-primary-dark-200 font-ubuntu-medium mb-1">Пароль</Text>
@@ -162,10 +203,9 @@ const Signup = () => {
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
-                <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Пароль повинен містити не менше 8 символів, включаючи число та спеціальний символ.</Text>
               </View>
 
               <View className="mb-8">
@@ -175,10 +215,9 @@ const Signup = () => {
                   value={confirmPassword}
                   onChangeText={setConfirmPassword}
                   secureTextEntry
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400 mx-auto"
+                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
-                <Text className="w-[320px] font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Паролі повинні співпадати</Text>
               </View>
 
               <TouchableOpacity onPress={registerUser} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl shadow-md">
@@ -190,7 +229,6 @@ const Signup = () => {
               </TouchableOpacity>
             </>
           )}
-          
         </View>
       </ImageBackground>
     </SafeAreaView>

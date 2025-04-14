@@ -13,6 +13,7 @@ interface UserData {
 }
 
 const DEFAULT_AVATAR = image.friends;
+const API_BACK = 'http://192.168.43.138:8080/api/user/'
 
 const Account: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -29,7 +30,7 @@ const Account: React.FC = () => {
           return;
         }
 
-        const response = await fetch('http://192.168.43.138:8080/api/user/', {
+        const response = await fetch(`${API_BACK}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

@@ -10,7 +10,7 @@ import { Link } from "expo-router";
 import icon from "@/constants/icon";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_BASE_URL = "http://192.168.43.138:8080/api";
+const API_BASE_URL = "http://192.168.46.138:8080/api";
 
 export default function HomeScreen() {
   const [exercises, setExercises] = useState([]);

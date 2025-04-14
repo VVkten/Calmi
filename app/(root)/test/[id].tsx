@@ -7,6 +7,8 @@ import icon from "@/constants/icon";
 import { Image } from "react-native";
 import { Stack } from "expo-router";
 
+const API_BACK = 'http://192.168.43.138:8080/api/test/'
+
 export default function TestDetail() {
   const { id } = useLocalSearchParams();
   const [test, setTest] = useState(null);
@@ -16,7 +18,7 @@ export default function TestDetail() {
     const fetchTest = async () => {
       try {
         const token = await AsyncStorage.getItem("jwt");
-        const response = await fetch(`http://192.168.43.138:8080/api/test/${id}/`, {
+        const response = await fetch(`${API_BACK}${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

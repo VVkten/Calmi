@@ -16,12 +16,13 @@ export default function ExerciseVideo() {
   const router = useRouter(); // Ініціалізуємо router для навігації
 
   console.log('IDIDIDIDDID', id)
+  const API_BACK = 'http://192.168.43.138:8080/api/exercise/'
 
   useEffect(() => {
     const fetchExercise = async () => {
       try {
         const token = await AsyncStorage.getItem("jwt");
-        const response = await fetch(`http://192.168.43.138:8080/api/exercise/${id}/`, {
+        const response = await fetch(`${API_BACK}${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

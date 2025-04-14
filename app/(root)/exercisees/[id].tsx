@@ -9,6 +9,8 @@ import { Stack } from "expo-router";
 import { Video } from "expo-av";
 import { useRouter } from "expo-router"; // Імпортуємо useRouter для навігації
 
+const API_BACK = 'http://192.168.43.138:8080/api/exercise/'
+
 export default function ExerciseDetail() {
   const { id } = useLocalSearchParams();
   const [exercise, setExercise] = useState(null);
@@ -19,7 +21,7 @@ export default function ExerciseDetail() {
     const fetchExercise = async () => {
       try {
         const token = await AsyncStorage.getItem("jwt");
-        const response = await fetch(`http://192.168.43.138:8080/api/exercise/${id}/`, {
+        const response = await fetch(`${API_BACK}${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
