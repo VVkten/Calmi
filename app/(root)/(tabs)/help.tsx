@@ -23,7 +23,7 @@ export default function Help() {
         const token = await AsyncStorage.getItem("jwt");
 
         if (!token) {
-          console.error("Токен не знайдено!");
+          // console.error("Токен не знайдено!");
           return;
         }
 

@@ -13,7 +13,7 @@ interface UserData {
 }
 
 const DEFAULT_AVATAR = image.friends;
-const API_BACK = 'http://192.168.43.138:8080/api/user/'
+const API_BASE_URL = "http://192.168.46.138:8080/api/user";
 
 const Account: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -24,13 +24,14 @@ const Account: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const token = await AsyncStorage.getItem('jwt');
+        console.log('Tокен з AsyncStorage:', token);
         if (!token) {
           console.log('Токен не знайдено');
           setLoading(false);
           return;
         }
 
-        const response = await fetch(`${API_BACK}`, {
+        const response = await fetch(`${API_BASE_URL}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -62,10 +63,11 @@ const Account: React.FC = () => {
       // Видалення даних користувача з state
       setUserData(null);
       // Перехід на головну сторінку після логауту
-      router.replace('/');
-      console.log(AsyncStorage.getItem("jwt"))
+      router.replace('/hello');
+      console.log("Token", AsyncStorage.getItem("jwt"))
     } catch (error) {
-      console.error('Помилка при виході:', error);
+      console.log('Помилка при виході:', error);
+      router.replace('/hello');
     }
   };
 
@@ -140,6 +142,13 @@ const Account: React.FC = () => {
               <Text className="text-lg text-primary-dark-200">Community support</Text>
             </Link>
           </View> */}
+            {/* Кнопка для виходу */}
+            <TouchableOpacity
+              onPress={handleLogout}
+              className="mt-5 py-3 px-6 bg-red-500 rounded-lg flex-row justify-center items-center"
+            >
+              <Text className="text-white text-lg">Вийти</Text>
+            </TouchableOpacity>
 
          
           <View className="w-full h-6 mt-[180%] mb-0 flex-row justify-center items-center">

@@ -29,7 +29,7 @@ export default function HomeScreen() {
         const token = await AsyncStorage.getItem("jwt");
 
         if (!token) {
-          console.error("Токен не знайдено!");
+          // console.error("Токен не знайдено!");
           return;
         }
 
@@ -72,8 +72,10 @@ export default function HomeScreen() {
             <>
               {/* Популярні вправи */}
               <View>
-                <Link href="/exercise" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
-                  Популярні вправи
+                <Link href="/exercise">
+                  <Text className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
+                    Популярні вправи
+                  </Text>
                 </Link>
 
                 <View className="flex-row justify-between mt-2 m-2">
@@ -90,8 +92,10 @@ export default function HomeScreen() {
 
               {/* Статті дня */}
               <View className="mt-3 mb-[8%] mx-3">
-                <Link href="/book" className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
-                  Статті дня
+                <Link href="/book">
+                  <Text className="text-lg font-ubuntu-bold text-primary-dark-100 ml-2">
+                    Статті дня
+                  </Text>
                 </Link>
 
                 {getRandomItems(articles, 2).map((article) => (

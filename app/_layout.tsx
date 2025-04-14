@@ -16,34 +16,14 @@ export default function Layout() {
     "Ubuntu-Regular": require("../assets/fonts/Ubuntu-Regular.ttf"),
   });
 
-  const [isAuthChecked, setIsAuthChecked] = useState(false);
-  const router = useRouter();
-
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const token = await AsyncStorage.getItem("jwt");
-        if (token) {
-          router.replace("/(root)/(tabs)/home");
-        } else {
-          router.replace("/login");
-        }
-      } catch (error) {
-        console.error("Помилка при отриманні токена:", error);
-        router.replace("/login");
-      } finally {
-        setIsAuthChecked(true);
-      }
-    };
-
-    if (fontsLoaded && !isAuthChecked) {
+    if (fontsLoaded) {
       SplashScreen.hideAsync();
-      checkAuth();
     }
-  }, [fontsLoaded, isAuthChecked]);
+  }, [fontsLoaded]);
 
-  // Поки шрифти не завантажені або не виконана перевірка токена, повертаємо `null`
-  if (!fontsLoaded || !isAuthChecked) return null;
-
+  if (!fontsLoaded) {
+    return null;
+  }
   return <Stack screenOptions={{ headerShown: false }} />;
 }

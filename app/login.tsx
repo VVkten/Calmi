@@ -38,9 +38,9 @@ export const loginUser = async (email: string, password: string) => {
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error('Помилка входу:', error.message);
+      console.log('Помилка входу:', error.message);
     } else {
-      console.error('Невідома помилка');
+      console.log('Невідома помилка');
     }
   }
 };
@@ -60,7 +60,7 @@ const Login = () => {
       const userData = await loginUser(email, password);
       if (userData) {
         Alert.alert('Успішний вхід', `Вітаємо, ${userData.email}!`);
-        router.replace('./(root)/(tabs)/home'); // Переходимо на головну сторінку
+        router.replace('/'); // Переходимо на головну сторінку
       } else {
         Alert.alert('Помилка', 'Невідомий користувач або не вдалося отримати дані');
       }

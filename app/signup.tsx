@@ -89,7 +89,7 @@ const Signup = () => {
         const userData = await loginUser(email, password);
         if (userData) {
           Alert.alert('Успішний вхід', `Вітаємо, ${userData.email}!`);
-          router.replace('/home');
+          router.replace('/');
         } else {
           Alert.alert('Помилка', 'Не вдалося увійти після реєстрації');
         }
