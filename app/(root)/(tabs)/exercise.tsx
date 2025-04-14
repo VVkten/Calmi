@@ -34,7 +34,7 @@ export default function Exercise() {
           },
         });
         const exercisesData = await response.json();
-        console.log("Отримані вправи:", exercisesData);
+        console.log("Отримані вправи");
         setExercises(exercisesData);
       } catch (error) {
         console.error("Помилка при отриманні даних:", error);

@@ -32,15 +32,14 @@ export default function Book() {
             "Content-Type": "application/json",
           };
   
-          const [exercisesRes, articlesRes] = await Promise.all([
+          const [testsRes, articlesRes] = await Promise.all([
             fetch(`${API_BASE_URL}/tests/`, { headers }),
             fetch(`${API_BASE_URL}/articles/`, { headers }),
           ]);
   
-          const testsData = await exercisesRes.json();
+          const testsData = await testsRes.json();
           const articlesData = await articlesRes.json();
-          console.log("Отримані вправи:", testsData);
-          console.log("Отримані статті:", articlesData);
+          console.log("Отримані тести та статті");
   
           setTests(testsData);
           setArticles(articlesData);

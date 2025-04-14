@@ -40,8 +40,7 @@ export default function Help() {
 
         const exercisesData = await exercisesRes.json();
         const articlesData = await articlesRes.json();
-        console.log("Отримані вправи:", exercisesData);
-        console.log("Отримані статті:", articlesData);
+        console.log("Отримані вправи та статі для екстреної сторінки");
 
         setExercises(exercisesData);
         setArticles(articlesData);

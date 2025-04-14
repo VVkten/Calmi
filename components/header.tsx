@@ -2,9 +2,16 @@ import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import image from '@/constants/image';
 import icon from '@/constants/icon';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 const Header: React.FC = () => {
+  const router = useRouter();
+
+  // Функція для переходу на сторінку акаунта
+  const handleAccountPress = () => {
+    router.push('/(root)/(settings)/account');
+  };
+
   return (
     <View className="flex-row justify-between items-center p-4 w-full bg-transparent">
       {/* Лого зліва */}
@@ -31,18 +38,17 @@ const Header: React.FC = () => {
 
         {/* Акаунт */}
         <View>
-          <Link href="/(root)/(settings)/account">
+          <TouchableOpacity onPress={handleAccountPress}>
             <View className=" w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border border-primary-dark-200">
               <Image
                 source={icon.account} 
                 className="w-8 h-8"
               />
             </View>
-          </Link>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
-
   );
 };
 

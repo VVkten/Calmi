@@ -45,8 +45,7 @@ export default function HomeScreen() {
 
         const exercisesData = await exercisesRes.json();
         const articlesData = await articlesRes.json();
-        console.log("Отримані вправи:", exercisesData);
-        console.log("Отримані статті:", articlesData);
+        console.log("Отримані вправи та статі для головної сторінки");
 
         setExercises(exercisesData);
         setArticles(articlesData);

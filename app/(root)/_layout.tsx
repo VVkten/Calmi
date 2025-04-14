@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Slot, useRouter, useSegments } from "expo-router";
+import { Stack, useRouter, useSegments } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -46,5 +46,7 @@ export default function AppLayout() {
     );
   }
 
-  return <Slot />;
+  return <Stack screenOptions={{
+    headerShown: false,  // Вимикає заголовки для всіх екранів в цьому Stack
+  }}/>;
 }
