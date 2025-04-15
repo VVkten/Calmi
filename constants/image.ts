@@ -33,6 +33,17 @@ import phonGreenExr from "@/assets/images/phon-green-ex.png";
 import phonGreenDotWhite from "@/assets/images/phon-green-dot-white.jpg";
 import phonGreenBlue from "@/assets/images/phon-green-blue.jpg";
 import iconPlusTextRed from "@/assets/images/iconplustextright-red.png";
+import phonPinkRedOrang from "@/assets/images/phon-orang-pink-red.jpg";
+import phonYellOrg from "@/assets/images/phon-yellow-or.jpg";
+import phonYellow from "@/assets/images/phon-yellow.jpg";
+import phonYellWhite from "@/assets/images/phon-orang-w.jpg";
+import phonOrngWY from "@/assets/images/phon-orang-w-y.jpg";
+import phonTest1 from "@/assets/images/phon-test-1.jpg";
+import phonTest2 from "@/assets/images/phon-test-2.jpg";
+import phonTest3 from "@/assets/images/phon-test-3.png";
+import phonTest4 from "@/assets/images/phon-test-4.png";
+import phonTest5 from "@/assets/images/phon-test-5.jpg";
+
 
 export default {
     logoStandart,
@@ -69,5 +80,15 @@ export default {
     phonGreenExr,
     phonGreenDotWhite,
     phonGreenBlue,
-    iconPlusTextRed
+    iconPlusTextRed,
+    phonPinkRedOrang,
+    phonYellOrg,
+    phonYellow,
+    phonYellWhite,
+    phonOrngWY,
+    phonTest1,
+    phonTest2,
+    phonTest3,
+    phonTest4,
+    phonTest5
 };

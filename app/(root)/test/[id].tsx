@@ -7,7 +7,7 @@ import icon from "@/constants/icon";
 import { Image } from "react-native";
 import { Stack } from "expo-router";
 
-const API_BASE_URL = "http://192.168.46.138:8080/api/test/";
+const API_BASE_URL = "http://192.168.46.138:8080/api/tests/";
 
 export default function TestDetail() {
   const { id } = useLocalSearchParams();
@@ -40,10 +40,23 @@ export default function TestDetail() {
     return <ActivityIndicator size="large" color="#0000ff" className="flex justify-center items-center h-full" />;
   }
 
+  function getRandomImage(): string {
+    const images = [
+      "phonTest1",
+      "phonTest2",
+      "phonTest3",
+      "phonTest4",
+      "phonTest5",
+    ];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  }
+
+  const randomPhon = getRandomImage();
+
   const navigateToTest = () => {
-    console.log(`Navigating to video for exercise: ${test.id}`);
-    // router.push(`/exercisees/${id}/video`);
-    router.push('/test/testError');
+    console.log(`Navigating to test: ${test.id}`);
+    router.push(`/test/testRun/${test.id}`);
   };
 
   return (
@@ -51,9 +64,11 @@ export default function TestDetail() {
     <Stack.Screen options={{ title: test?.title || "TEST" }} />
 
     <SafeAreaView className="flex-1">
-      <ImageBackground source={image.phonBlueYel} className="flex-1 w-full h-full" resizeMode="cover">
+      <ImageBackground 
+        source={image[randomPhon]} // Викликаємо getRandomImage() поза JSX 
+        className="flex-1 w-full h-full" resizeMode="cover">
         <ScrollView className="flex-1 p-5">
-          <View className="p-4 mb-10 mx-0">
+          <View className="p-4 mb-10 mx-0 mt-[25%]">
 
             {/* <View className="items-end mt-4 mx-0">
               <Image source={icon.share} className="w-10 h-10" tintColor="#14532d"/>
@@ -61,12 +76,12 @@ export default function TestDetail() {
             </View> */}
 
             <View>
-              <Text className="text-2xl font-ubuntu-bold text-green-900">{test.title}</Text>
+              <Text className="text-2xl font-ubuntu-bold text-orange-800">{test.title}</Text>
               <View className="flex-row items-center mt-3">
-                <Text className="text-lg text-green-900 font-ubuntu-medium">CalMi</Text>
+                <Text className="text-lg text-orange-800 font-ubuntu-medium">CalMi</Text>
                 <Image source={icon.tick} className="w-6 h-6 ml-2" />
               </View>
-              <Text className="text-sm font-ubuntu-regular mt-3 text-green-900">{test.description}</Text>
+              <Text className="text-sm font-ubuntu-regular mt-3 text-orange-700">{test.description}</Text>
             </View>
 
             {/* <View className="mt-5 items-center">
@@ -78,9 +93,9 @@ export default function TestDetail() {
             <View className="mt-[30%] w-[80%] items-center ml-[10%]">
               <TouchableOpacity
                 onPress={navigateToTest} 
-                className="bg-green-50 p-5 rounded-2xl items-center border border-green-900"
+                className="bg-orange-50 p-5 rounded-2xl items-center border border-orange-900"
               >
-                <Text className="text-base font-ubuntu-medium text-green-950">Пройти тест</Text>
+                <Text className="text-base font-ubuntu-medium text-orange-900">Пройти тест</Text>
               </TouchableOpacity>
             </View>
         </View>
