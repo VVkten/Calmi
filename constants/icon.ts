@@ -27,6 +27,7 @@ import tick from "@/assets/icons/tick.png";
 import report from "@/assets/icons/report.png";
 import robotHappy from "@/assets/icons/emoji-robot-happy.png";
 import robotDead from "@/assets/icons/robot-dead.png";
+import notFound from "@/assets/icons/not-found.png";
 
 export default {
     settings,
@@ -57,5 +58,6 @@ export default {
     tick,
     report,
     robotHappy, 
-    robotDead
+    robotDead,
+    notFound
 };

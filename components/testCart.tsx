@@ -26,14 +26,14 @@ const TestLink: React.FC<TestProps> = ({ title, image, link, color }) => {
         const randomPhon = getRandomImage();
   return (
     <Link href={link} asChild>
-      <TouchableOpacity onPress={() => { }} className='w-full h-24 mb-2 border rounded-lg' style={{ borderColor: color }}>
+      <TouchableOpacity onPress={() => { }} className='w-32 h-36 mb-2 m-1 border rounded-lg' style={{ borderColor: color }}>
         {/* Перевіряємо чи є зображення */}
         <ImageBackground
           source={image?.uri ? { uri: image.uri } : images[randomPhon]} // Якщо зображення є, використовуємо його, інакше фон-заповнювач
           className='w-full h-full '
         >
-          <View className='flex justify-center items-center w-full h-full bg-white/25 rounded-md'>
-            <Text className='text-amber-700 text-lg font-ubuntu-bold'>{title}</Text>
+          <View className='flex justify-center items- p-1 w-full h-full bg-white/25 rounded-md'>
+            <Text className='text-amber-700 text-base font-ubuntu-bold'>{title}</Text>
           </View>
         </ImageBackground>
       </TouchableOpacity>

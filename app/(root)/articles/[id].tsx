@@ -7,7 +7,7 @@ import icon from "@/constants/icon";
 import { Image } from "react-native";
 import { Stack } from "expo-router";
 
-const API_BASE_URL = "http://192.168.46.138:8080/api/article";
+const API_BASE_URL = "http://192.168.46.138:8080/api/article/";
 
 export default function ArticleDetail() {
   const { id } = useLocalSearchParams();
