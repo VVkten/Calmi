@@ -7,6 +7,7 @@ import icon from '@/constants/icon';
 import ArticleCard from '@/components/articleCard';
 import ExerciseCard from '@/components/exerciseCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from "../../../components/header";
 
 const API_BASE_URL = "http://192.168.46.138:8080/api";
 
@@ -63,10 +64,12 @@ export default function Help() {
     <SafeAreaView className="flex-1">
       {/* Фонове зображення */}
       <ImageBackground 
-        source={image.phonPinkWhiteDot} 
+        source={image.phonPingPurp} 
         className="flex-1 w-full h-full"
         resizeMode="cover"
       >
+        <Header logo={image.iconPlusTextRed} color="#dc2626" />
+
         {/* Основний контент */}
         <ScrollView 
           className="flex-1 p-2 mt-2"
@@ -77,14 +80,6 @@ export default function Help() {
             <ActivityIndicator size="large" color="#003155" />
           ) : (
             <>
-              <View className="flex-row justify-between items-center p-4 w-full">
-                <View className="w-[120px] h-14">
-                  <Image 
-                    source={image.iconPlusTextRed} 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </View>
-              </View>
 
               <View className='mt-3'>
                 <TouchableOpacity 

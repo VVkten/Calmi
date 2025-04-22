@@ -1,44 +1,23 @@
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
-import React from 'react'
-import images from '@/constants/image'
+import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
 import { Link } from 'expo-router';
 
 interface TestProps {
   link: string;
   title: string;
-  image: { uri: string } | null;
   color: string;
 }
 
-const TestLink: React.FC<TestProps> = ({ title, image, link, color }) => {
-  function getRandomImage(): string {
-          const images = [
-            "phonTest1",
-            "phonTest2",
-            "phonTest3",
-            "phonTest4",
-            "phonTest5",
-          ];
-          const randomIndex = Math.floor(Math.random() * images.length);
-          return images[randomIndex];
-        }
-      
-        const randomPhon = getRandomImage();
+const TestLink: React.FC<TestProps> = ({ title, link, color }) => {
   return (
     <Link href={link} asChild>
-      <TouchableOpacity onPress={() => { }} className='w-full h-24 mb-2 border rounded-lg' style={{ borderColor: color }}>
-        {/* Перевіряємо чи є зображення */}
-        <ImageBackground
-          source={image?.uri ? { uri: image.uri } : images[randomPhon]} // Якщо зображення є, використовуємо його, інакше фон-заповнювач
-          className='w-full h-full '
-        >
-          <View className='flex justify-center items-center w-full h-full bg-white/25 rounded-md'>
-            <Text className='text-amber-700 text-lg font-ubuntu-bold'>{title}</Text>
-          </View>
-        </ImageBackground>
+      <TouchableOpacity onPress={() => { }} className="w-full h-24 mb-2 border rounded-lg" style={{ borderColor: color }}>
+        <View className="flex justify-center items-center w-full h-full rounded-md" style={{ backgroundColor: color }}>
+          <Text className="text-white text-lg font-ubuntu-bold">{title}</Text>
+        </View>
       </TouchableOpacity>
     </Link>
-  )
-}
+  );
+};
 
-export default TestLink
+export default TestLink;

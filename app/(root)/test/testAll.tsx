@@ -102,14 +102,12 @@ export default function Book() {
               returnKeyType="search"
             />
 
-            <Link href={"/(root)/articles/articleDetails"}>
-              <TouchableOpacity
-                className="w-14 h-14 rounded-xl flex items-center justify-center mr-2"
-                 onPress={ () => router.push("/articles/articleDetails")}>
+           
+              <View
+                className="w-14 h-14 rounded-xl flex items-center justify-center mr-2">
                 <Image source={icon.search} tintColor={"#9a3412"} className="w-8 h-8" />
-              </TouchableOpacity>
-            </Link>
-            
+              </View>
+           
           </View>
 
           {query.trim() === "" ? (

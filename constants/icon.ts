@@ -28,6 +28,7 @@ import report from "@/assets/icons/report.png";
 import robotHappy from "@/assets/icons/emoji-robot-happy.png";
 import robotDead from "@/assets/icons/robot-dead.png";
 import notFound from "@/assets/icons/not-found.png";
+import alli from "@/assets/icons/alli.png";
 
 export default {
     settings,
@@ -59,5 +60,6 @@ export default {
     report,
     robotHappy, 
     robotDead,
-    notFound
+    notFound,
+    alli
 };

@@ -43,6 +43,19 @@ import phonTest2 from "@/assets/images/phon-test-2.jpg";
 import phonTest3 from "@/assets/images/phon-test-3.png";
 import phonTest4 from "@/assets/images/phon-test-4.png";
 import phonTest5 from "@/assets/images/phon-test-5.jpg";
+import phonBook from "@/assets/images/phon-book.jpg";
+import scared from "@/assets/images/scared.png";
+import happy from "@/assets/images/happy.png";
+import thinging from "@/assets/images/thinging.png";
+import sad from "@/assets/images/sad.png";
+import angry from "@/assets/images/angry.png";
+import panic from "@/assets/images/panic.png";
+import dont_know from "@/assets/images/dont_know.png";
+import tired from "@/assets/images/tired.png";
+import love from "@/assets/images/love.png";
+import cry from "@/assets/images/cry.png";
+import dance from "@/assets/images/dance.png";
+import good from "@/assets/images/good.png";
 
 
 export default {
@@ -90,5 +103,18 @@ export default {
     phonTest2,
     phonTest3,
     phonTest4,
-    phonTest5
+    phonTest5,
+    phonBook,
+    scared,
+    happy,
+    thinging,
+    sad,
+    angry,
+    panic,
+    dont_know,
+    tired,
+    love,
+    cry,
+    dance,
+    good
 };

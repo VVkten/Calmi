@@ -4,7 +4,13 @@ import image from '@/constants/image';
 import icon from '@/constants/icon';
 import { useRouter } from 'expo-router';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  logo: any;
+  color: string;
+}
+
+
+const Header: React.FC<HeaderProps> = ({ logo, color }) => {
   const router = useRouter();
 
   // Функція для переходу на сторінку акаунта
@@ -15,10 +21,10 @@ const Header: React.FC = () => {
   return (
     <View className="flex-row justify-between items-center p-4 w-full bg-transparent">
       {/* Лого зліва */}
-      <View className="w-[125px] h-14">
+      <View className="w-[125px] h-16">
         <Image 
-          source={image.logotextright} 
-          className="w-full h-full object-contain rounded-lg"
+            source={logo || image.iconPlusTextRed}
+            className="w-full h-full object-contain rounded-lg"
         />
       </View>
 
@@ -39,8 +45,9 @@ const Header: React.FC = () => {
         {/* Акаунт */}
         <View>
           <TouchableOpacity onPress={handleAccountPress}>
-            <View className=" w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border border-primary-dark-200">
+            <View className=" w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center border" style={{ borderColor: color }}>
               <Image
+                tintColor={color}
                 source={icon.account} 
                 className="w-8 h-8"
               />

@@ -16,6 +16,8 @@ import { Link } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TestLink from '@/components/testLink';
 import ArticleCard from '@/components/articleCard';
+import Header from "../../../components/header";
+
 
 const API_BASE_URL = 'http://192.168.46.138:8080/api';
 
@@ -97,18 +99,11 @@ export default function Book() {
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground
-        source={image.phonPeach3}
+        source={image.phonBook}
         className="flex-1 w-full h-full"
         resizeMode="cover"
       >
-        <View className="flex-row justify-between items-center p-4 w-full">
-          <View className="w-[120px] h-14">
-            <Image
-              source={image.logotextGreen}
-              className="w-full h-full object-contain rounded-lg"
-            />
-          </View>
-        </View>
+        <Header logo={image.iconPlusTextRed} color="#c2410c" />
 
         <ScrollView
           className="flex-1 p-2 mt-2"
@@ -120,7 +115,7 @@ export default function Book() {
           ) : (
             <>
               {/* ПОШУК */}
-              <View className="flex-row items-center bg-gray-100 border border-orange-800 rounded-xl p-2 mx-4 mb-4 h-16">
+              <View className="flex-row items-center bg-white border border-orange-800 rounded-xl p-2 mx-4 mb-4 h-16">
                 <TextInput
                   className="flex-1 text-lg p-2 text-orange-800 font-ubuntu-medium"
                   placeholder="Пошук..."
@@ -146,17 +141,24 @@ export default function Book() {
 
               {/* ТЕСТИ */}
               <View className="mb-1 mx-3">
-                <Link
-                  href="/(root)/test/testAll"
-                  className="text-xl font-ubuntu-bold text-amber-900 underline mb-1 ml-2"
-                >
-                  Тести
-                </Link>
+              <Link href="/(root)/test/testAll">
+                  <View className='w-full flex-row items-center justify-between'>
+                    <Text className='font-ubuntu-bold text-xl text-amber-900'>
+                      Тести
+                    </Text>
+                      <Image 
+                        source={icon.alli} 
+                        tintColor={"#78350f"} 
+                        className="w-4 h-4"
+                      /> 
+                  </View>
+                 </Link>
                 {filteredTests.length > 0 ? (
                   filteredTests.slice(0, 2).map((test) => (
                     <TestLink
                       key={test.id}
-                      id={test.id}
+                      color='#d97706'
+                      // id={test.id}
                       title={test.title}
                       link={`/(root)/test/${test.id}`}
                     />
@@ -176,12 +178,18 @@ export default function Book() {
 
               {/* СТАТТІ */}
               <View className="mt-3 mb-5 mx-3">
-                <Link
-                  href="/(root)/articles/articlesAll"
-                  className="text-xl font-ubuntu-bold text-amber-900 underline mb-1 ml-2"
-                >
-                  Популярні статті
-                </Link>
+               <Link href="/(root)/articles/articlesAll">
+                  <View className='w-full flex-row items-center justify-between'>
+                    <Text className='font-ubuntu-bold text-xl text-amber-900'>
+                      Статті
+                    </Text>
+                      <Image 
+                        source={icon.alli} 
+                        tintColor={"#78350f"} 
+                        className="w-4 h-4"
+                      /> 
+                  </View>
+                 </Link>
                 {filteredArticles.length > 0 ? (
                   filteredArticles.slice(0, 4).map((article) => (
                     <ArticleCard

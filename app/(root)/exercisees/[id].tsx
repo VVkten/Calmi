@@ -28,7 +28,7 @@ export default function ExerciseDetail() {
           },
         });
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setExercise(data);
       } catch (error) {
         console.error("Error fetching exercise:", error);
@@ -47,7 +47,7 @@ export default function ExerciseDetail() {
   const navigateToVideo = () => {
     console.log(`Navigating to video for exercise: ${exercise.id}`);
     // router.push(`/exercisees/${id}/video`);
-    router.push('/exercisees/exerciesError');
+    router.push(`/exercisees/exerciseRun/${exercise.id}`);
   };
 
   return (
@@ -67,17 +67,12 @@ export default function ExerciseDetail() {
                 <Text className="text-sm font-ubuntu-regular mt-3 text-green-900">{exercise.description}</Text>
               </View>
 
-              <View className="mt-5 items-center">
-                <Image source={{ uri: `http://192.168.46.138:8080${exercise.image}` }} className="w-96 h-96 rounded-xl" />
+              <View className="mt-[30%] items-center">
+                <Image source={{ uri: `http://192.168.46.138:8080${exercise.image}` }} className="w-52 h-52 rounded-xl" />
               </View>
 
-              {/* <View className="items-end mt-4 mx-0">
-                <Image source={icon.share} className="w-10 h-10" tintColor="#14532d"/>
-                <Image source={icon.report} className="w-10 h-10" tintColor="#14532d" />
-              </View> */}
-
               {/* Кнопка для переходу на відео сторінку */}
-              <View className="mt-14 w-[80%] items-center ml-[10%]">
+              <View className="mt-[40%] w-[80%] items-center ml-[10%]">
                 <TouchableOpacity
                   onPress={navigateToVideo} 
                   className="bg-green-50 p-5 rounded-2xl items-center border border-green-900"
