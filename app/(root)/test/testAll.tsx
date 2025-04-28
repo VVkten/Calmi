@@ -11,8 +11,10 @@ import TestLink from '@/components/testLink'
 import TestCart from '@/components/testCart'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { title } from 'process'
+import API_BASE_URL from '@/settings';
 
-const API_BASE_URL = "http://192.168.46.138:8080/api";
+
+// const API_BASE_URL = "http://192.168.46.138:8080/api";
 
 export default function Book() {
     const [tests, setTests] = useState([]);
@@ -35,7 +37,7 @@ export default function Book() {
           };
   
           const [testsRes] = await Promise.all([
-            fetch(`${API_BASE_URL}/tests/`, { headers }),
+            fetch(`${API_BASE_URL}tests/`, { headers }),
           ]);
   
           const testsData = await testsRes.json();

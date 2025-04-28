@@ -30,9 +30,11 @@ import phonOrng from "@/assets/images/phon-orng.jpg";
 import phonGreenWhite from "@/assets/images/phon-green-white.jpg";
 import phonPinkVerh from "@/assets/images/phon-pink-verh.jpg";
 import phonGreenExr from "@/assets/images/phon-green-ex.png";
+import phonGreenExrPro from "@/assets/images/phon-green-ex-pro.png";
 import phonGreenDotWhite from "@/assets/images/phon-green-dot-white.jpg";
 import phonGreenBlue from "@/assets/images/phon-green-blue.jpg";
 import iconPlusTextRed from "@/assets/images/iconplustextright-red.png";
+import iconPlusTextPink from "@/assets/images/iconplustextright-pink.png";
 import phonPinkRedOrang from "@/assets/images/phon-orang-pink-red.jpg";
 import phonYellOrg from "@/assets/images/phon-yellow-or.jpg";
 import phonYellow from "@/assets/images/phon-yellow.jpg";
@@ -116,5 +118,7 @@ export default {
     love,
     cry,
     dance,
-    good
+    good,
+    phonGreenExrPro,
+    iconPlusTextPink
 };

@@ -4,12 +4,14 @@ import image from '@/constants/image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import API_BASE_URL from '@/settings';
 
-const API_BASE_URL = "http://192.168.46.138:8080/api/login/";
+// const API_BASE_URL = "http://192.168.0.109:8080/api/login/";
 
 export const loginUser = async (email: string, password: string) => {
+  console.log('api adrs: ', API_BASE_URL);
   try {
-    const response = await fetch(API_BASE_URL, {
+    const response = await fetch(`${API_BASE_URL}login/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

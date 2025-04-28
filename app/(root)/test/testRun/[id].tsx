@@ -1,5 +1,5 @@
-import { useLocalSearchParams, router } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useLocalSearchParams, router, useNavigation } from "expo-router";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   View,
   Text,
@@ -13,6 +13,8 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stack } from "expo-router";
 import image from "@/constants/image";
+import API_BASE_URL from '@/settings';
+
 
 type Answer = {
   id: number;
@@ -39,20 +41,29 @@ export default function TestRun() {
   const [loading, setLoading] = useState(true);
   const [backgroundImage, setBackgroundImage] = useState<string>("");
 
+  const navigation = useNavigation();
 
-  const API_BASE_URL = "http://192.168.46.138:8080/api/tests/";
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, [navigation]);
+  
+  
+
+  // const API_BASE_URL = "http://192.168.46.138:8080/api/tests/";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = await AsyncStorage.getItem("jwt");
-        const res = await fetch(`${API_BASE_URL}${id}/questions_with_answers/`, {
+        const res = await fetch(`${API_BASE_URL}tests/${id}/questions_with_answers/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const questionsData = await res.json();
         setQuestions(questionsData);
 
-        const resultRes = await fetch(`${API_BASE_URL}${id}/result/`, {
+        const resultRes = await fetch(`${API_BASE_URL}tests/${id}/result/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const resultData = await resultRes.json();
@@ -117,21 +128,21 @@ export default function TestRun() {
     
   };
 
-  function getRandomImage(): string {
-    const images = [
-      "phonTest1",
-      "phonTest2",
-      "phonTest3",
-      "phonTest4",
-      "phonTest5",
-    ];
-    const randomIndex = Math.floor(Math.random() * images.length);
-    return images[randomIndex];
-  }
+  // function getRandomImage(): string {
+  //   const images = [
+  //     "phonTest1",
+  //     "phonTest2",
+  //     "phonTest3",
+  //     "phonTest4",
+  //     "phonTest5",
+  //   ];
+  //   const randomIndex = Math.floor(Math.random() * images.length);
+  //   return images[randomIndex];
+  // }
   
-  useEffect(() => {
-    setBackgroundImage(getRandomImage());
-  }, [currentIndex]);
+  // useEffect(() => {
+  //   setBackgroundImage(getRandomImage());
+  // }, [currentIndex]);
   
 
   // const randomPhon = getRandomImage();
@@ -155,7 +166,7 @@ export default function TestRun() {
     <SafeAreaView className="flex-1">
       <Stack.Screen options={{ title: `Питання ${currentIndex + 1}` }} />
       <ImageBackground 
-        source={image[backgroundImage]}
+        source={image.phonTest3}
         className="flex-1 w-full h-full" 
         resizeMode="cover"
       >

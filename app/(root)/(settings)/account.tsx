@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import image from "@/constants/image";
 import icon from "@/constants/icon";
 import { Link, useRouter } from 'expo-router';
+import API_BASE_URL from '@/settings';
 
 interface UserData {
   name: string;
@@ -12,8 +13,8 @@ interface UserData {
   avatar?: string;
 }
 
-const DEFAULT_AVATAR = image.friends;
-const API_BASE_URL = "http://192.168.46.138:8080/api/user";
+const DEFAULT_AVATAR = icon.user2;
+// const API_BASE_URL = "http://192.168.0.109:8080/api/user";
 
 const Account: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -31,7 +32,7 @@ const Account: React.FC = () => {
           return;
         }
 
-        const response = await fetch(`${API_BASE_URL}`, {
+        const response = await fetch(`${API_BASE_URL}user/`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -107,7 +108,8 @@ const Account: React.FC = () => {
             {/* Фото профілю */}
             <Image
               source={userData.avatar ? { uri: userData.avatar } : DEFAULT_AVATAR}
-              className="w-36 h-36 rounded-full border-2 border-primary-dark-200"
+              tintColor={'#003155'}
+              className="w-36 h-36 rounded-3xl"
             />
             
             {/* Ім'я та email справа */}
@@ -117,41 +119,79 @@ const Account: React.FC = () => {
             </View>
           </View>
 
-         {/* <View className="mt-[20%] w-full h-[40%]">
-            <Link href="/" className="flex-row-reverse justify-between items-center py-3 border-b border-blue-900">
-              <Text className="text-lg text-primary-dark-200">Change password</Text>
-              <Image source={icon.account} className="w-5 h-5" />
+          <View className="mt-[5%] w-full">
+            <Link 
+              href="/" 
+              className="font-ubuntu-regular py-3 border-b border-blue-700"
+            >
+              <Text className="text-lg text-primary-dark-200">Моя інформація</Text>
+              <View className='m-0'>
+                 <Image source={icon.userC} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+
+              </View>
             </Link>
 
-            <TouchableOpacity onPress={handleLogout} className="flex-row justify-between items-center py-3 border-b border-blue-900">
-              <Text className="text-lg text-primary-dark-200">Log out</Text>
-              <Image source={icon.account} className="w-5 h-5" />
+            <Link 
+              href="/forgotpassword" 
+              className="flex-row justify-between items-center font-ubuntu-regular py-3 border-b border-blue-700"
+            >
+              <Text className="text-lg text-primary-dark-200">Змінити пароль</Text>
+              <View>
+                <Image source={icon.key} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+              </View>
+            </Link>
+
+            <TouchableOpacity 
+              onPress={handleLogout} 
+              className="items-center py-3 border-b border-blue-700"
+            >
+              <Text className="text-lg text-primary-dark-200">Вийти з акаунита</Text>
+              <View>
+                <Image source={icon.logi} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+              </View>
+              
             </TouchableOpacity>
 
-            <Link href="/" className="flex-row justify-between items-center py-3 border-b border-blue-900">
-              <Text className="text-lg text-primary-dark-200">Delete account</Text>
-              <Image source={icon.account} className="w-5 h-5" />
-            </Link>          
+            <Link 
+              href="/" 
+              className="flex-row justify-between items-center py-3 border-b font-ubuntu-regular border-blue-700"
+            >
+              <Text className="text-lg text-primary-dark-200">Видалити акаунт</Text>
+              <View>
+                <Image source={icon.deletea} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+              </View>
+              
+            </Link>
 
-            <Link href="/" className="flex-row justify-between items-center py-3 border-b border-blue-900">
-              <Text className="text-lg text-primary-dark-200">Update the app</Text>
+            <Link 
+              href="/" 
+              className="flex-row justify-between items-center py-3 border-b font-ubuntu-regular border-blue-700"
+            >
+              <Text className="text-lg text-primary-dark-200">Версія додатку</Text>
               <Text className="text-lg text-gray-500">1.0.0.v</Text>
             </Link>
 
-            <Link href="/" className="py-3">
-              <Text className="text-lg text-primary-dark-200">Community support</Text>
+            <Link 
+              href="/" 
+              className="py-3 border-b border-blue-700"
+            >
+              <Text className="text-lg text-primary-dark-200 font-ubuntu-regular">Підтримка спільноти</Text>
+              <View>
+                <Image source={icon.comment}  className="w-8 h-8 ml-36 mb-[-3%]" tintColor='#03528C' />
+              </View>
             </Link>
-          </View> */}
-            {/* Кнопка для виходу */}
+          </View>
+
+            {/* Кнопка для виходу
             <TouchableOpacity
               onPress={handleLogout}
               className="mt-5 py-3 px-6 bg-red-500 rounded-lg flex-row justify-center items-center"
             >
               <Text className="text-white text-lg">Вийти</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
          
-          <View className="w-full h-6 mt-[180%] mb-0 flex-row justify-center items-center">
+          <View className="w-full h-6 mt-[25%] mb-0 flex-row justify-center items-center">
             <Link href="/(root)/test/tests" className="text-primary-dark-200 text-sm mx-2">FAQ</Link>
             <Text className="text-gray-700 text-sm">|</Text>
             <Link href="/(root)/(resultsSerch)/search" className="text-primary-dark-200 text-sm mx-2">Support</Link>

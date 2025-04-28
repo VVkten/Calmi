@@ -9,9 +9,9 @@ import image from '@/constants/image'
 import icon from '@/constants/icon'
 import { query } from 'express';
 import Header from "../../../components/header";
+import API_BASE_URL from '@/settings';
 
-
-const API_BASE_URL = "http://192.168.46.138:8080/api";
+// const API_BASE_URL = "http://192.168.0.109:8080/api";
 
 export default function Exercise() {
   const [exercises, setExercises] = useState([]);
@@ -31,8 +31,8 @@ export default function Exercise() {
         };
 
         const [exerciseRes, categoriesRes] = await Promise.all([
-          fetch(`${API_BASE_URL}/exercises/`, { headers }),
-          fetch(`${API_BASE_URL}/categories/`, { headers }),
+          fetch(`${API_BASE_URL}exercises/`, { headers }),
+          fetch(`${API_BASE_URL}categories/`, { headers }),
         ]);
 
         const exerciseData = await exerciseRes.json();
@@ -143,12 +143,12 @@ export default function Exercise() {
                 // Якщо нема пошукового запиту — показуємо по категоріях
                 <View className="mb-4 mx-1">
                 {Object.entries(groupedExercise).map(([category, exerciseInCategory]) => (
-                  <View key={category} className="mb-4 m-0">
+                  <View key={category} className="mb-4 m-0 ml-4">
                     <Text className="text-lg font-ubuntu-bold text-green-900 ml-2 mb-1">
                       {category}
                     </Text>
                     
-                    <View className="flex-row flex-wrap justify-between mt-2 m-2">
+                    <View className="flex-row flex-wrap justify-between ml-1 mt-2 m-2">
                       {exerciseInCategory.slice(0, 4).map((exercise) => (
                         <View key={exercise.id} className="w-1/2 p-1 mb-3">
                           <ExerciseCardBig

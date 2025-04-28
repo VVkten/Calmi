@@ -4,8 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import API_BASE_URL from '@/settings';
 
-const API_BASE_URL = "http://192.168.46.138:8080/api/";
+
+// const API_BASE_URL = "http://192.168.0.109:8080/api/";
 
 export default function AppLayout() {
   const [loading, setLoading] = useState(true);

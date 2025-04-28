@@ -17,9 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import TestLink from '@/components/testLink';
 import ArticleCard from '@/components/articleCard';
 import Header from "../../../components/header";
-
-
-const API_BASE_URL = 'http://192.168.46.138:8080/api';
+import API_BASE_URL from '@/settings';
 
 export default function Book() {
   const [tests, setTests] = useState([]);
@@ -41,8 +39,8 @@ export default function Book() {
         };
 
         const [testsRes, articlesRes] = await Promise.all([
-          fetch(`${API_BASE_URL}/tests/`, { headers }),
-          fetch(`${API_BASE_URL}/articles/`, { headers }),
+          fetch(`${API_BASE_URL}tests/`, { headers }),
+          fetch(`${API_BASE_URL}articles/`, { headers }),
         ]);
 
         const testsData = await testsRes.json();
@@ -191,7 +189,7 @@ export default function Book() {
                   </View>
                  </Link>
                 {filteredArticles.length > 0 ? (
-                  filteredArticles.slice(0, 4).map((article) => (
+                  filteredArticles.slice(0, 3).map((article) => (
                     <ArticleCard
                       key={article.id}
                       id={article.id}

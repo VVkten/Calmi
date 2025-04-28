@@ -6,8 +6,10 @@ import { Link, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser } from './login';
 import { Ionicons } from '@expo/vector-icons';
+import API_BASE_URL from '@/settings';
 
-const API_BASE_URL = "http://192.168.46.138:8080/api/register/";
+
+// const API_BASE_URL = "http://192.168.0.109:8080/api/register/";
 
 const Signup = () => {
   const [step, setStep] = useState(1);
@@ -66,7 +68,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(API_BASE_URL, {
+      const response = await fetch(`${API_BASE_URL}register/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

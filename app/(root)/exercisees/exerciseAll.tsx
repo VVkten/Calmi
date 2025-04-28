@@ -15,8 +15,10 @@ import icon from '@/constants/icon';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ArticleCard from '@/components/articleCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import API_BASE_URL from '@/settings';
 
-const API_BASE_URL = 'http://192.168.46.138:8080/api';
+
+// const API_BASE_URL = 'http://192.168.46.138:8080/api';
 
 export default function exerciseAll() {
   const [exercise, setExercise] = useState([]);
@@ -36,8 +38,8 @@ export default function exerciseAll() {
         };
 
         const [exercisesRes, categoriesRes] = await Promise.all([
-          fetch(`${API_BASE_URL}/exercises/`, { headers }),
-          fetch(`${API_BASE_URL}/categories/`, { headers }),
+          fetch(`${API_BASE_URL}exercises/`, { headers }),
+          fetch(`${API_BASE_URL}categories/`, { headers }),
         ]);
 
         const exercisesData = await exercisesRes.json();

@@ -8,8 +8,10 @@ import { Image } from "react-native";
 import { Stack } from "expo-router";
 import { Video } from "expo-av";
 import { useRouter } from "expo-router"; // Імпортуємо useRouter для навігації
+import API_BASE_URL from '@/settings';
 
-const API_BASE_URL = "http://192.168.46.138:8080/api/exercise/";
+
+// const API_BASE_URL = "http://192.168.46.138:8080/api/exercise/";
 
 export default function ExerciseDetail() {
   const { id } = useLocalSearchParams();
@@ -21,7 +23,7 @@ export default function ExerciseDetail() {
     const fetchExercise = async () => {
       try {
         const token = await AsyncStorage.getItem("jwt");
-        const response = await fetch(`${API_BASE_URL}${id}/`, {
+        const response = await fetch(`${API_BASE_URL}exercise/${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -47,7 +49,7 @@ export default function ExerciseDetail() {
   const navigateToVideo = () => {
     console.log(`Navigating to video for exercise: ${exercise.id}`);
     // router.push(`/exercisees/${id}/video`);
-    router.push(`/exercisees/exerciseRun/${exercise.id}`);
+    router.navigate(`/exercisees/exerciseRun/${exercise.id}`);
   };
 
   return (

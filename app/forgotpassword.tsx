@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import { Link, router } from 'expo-router';
 import image from '@/constants/image';
+import API_BASE_URL from '@/settings';
 
 
-const API_BASE_URL = "http://192.168.46.138:8080/api";
+
+// const API_BASE_URL = "http://192.168.0.109:8080/api";
 
 
 interface SendCodeResponse {
@@ -260,7 +262,7 @@ const ResetPasswordForm: React.FC = () => {
 
         {errorMessage && <Text className="text-red-600">{errorMessage}</Text>}
 
-        <Link href="/login" className="text-green-800 font-ubuntu-medium mt-4 shadow-md shadow-green-500">
+        <Link href={router.back} className="text-green-800 font-ubuntu-medium mt-4 shadow-md shadow-green-500">
           Скасувати
         </Link>
       </ImageBackground>

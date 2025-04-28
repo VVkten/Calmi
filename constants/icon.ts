@@ -29,6 +29,12 @@ import robotHappy from "@/assets/icons/emoji-robot-happy.png";
 import robotDead from "@/assets/icons/robot-dead.png";
 import notFound from "@/assets/icons/not-found.png";
 import alli from "@/assets/icons/alli.png";
+import user1 from "@/assets/icons/user-1.png"
+import user2 from "@/assets/icons/user-2.png"
+import userC from "@/assets/icons/acc.png"
+import key from '@/assets/icons/key.png'
+import deletea from "@/assets/icons/delete.png"
+import logi from "@/assets/icons/logout.png"
 
 export default {
     settings,
@@ -61,5 +67,11 @@ export default {
     robotHappy, 
     robotDead,
     notFound,
-    alli
+    alli,
+    user1,
+    user2,
+    userC,
+    key,
+    deletea,
+    logi
 };
