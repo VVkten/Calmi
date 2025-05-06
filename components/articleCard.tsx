@@ -14,7 +14,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ id, title, description, link,
   return (
     <Link href={link} asChild>
       <TouchableOpacity activeOpacity={0.7}>
-        <View className="w-full bg-white border rounded-lg shadow-lg p-4 mt-2" style={{ borderColor: color, borderWidth: 1 }}>
+        <View className="w-full bg-white border rounded-lg p-4 mt-2" style={{ borderColor: color, borderWidth: 1 }}>
           <Text className="text-xl font-ubuntu-bold" style={{ color }}>
             {title}
           </Text>

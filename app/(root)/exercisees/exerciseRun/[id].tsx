@@ -40,8 +40,6 @@ export default function ExerciseVideo() {
   const [isBreathing, setIsBreathing] = useState(false);
   const [breathingLabel, setBreathingLabel] = useState("Начнем скоро...");
 
-  // const API_BASE_URL = "http://192.168.46.138:8080/api/exercise/";
-
   const circleSize = useSharedValue(250);
   const deformValue = useSharedValue(1);
   const colorValue = useSharedValue(0);

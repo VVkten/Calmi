@@ -13,9 +13,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { title } from 'process'
 import API_BASE_URL from '@/settings';
 
-
-// const API_BASE_URL = "http://192.168.46.138:8080/api";
-
 export default function Book() {
     const [tests, setTests] = useState([]);
     const [loading, setLoading] = useState(true);   

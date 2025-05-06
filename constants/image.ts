@@ -58,7 +58,15 @@ import love from "@/assets/images/love.png";
 import cry from "@/assets/images/cry.png";
 import dance from "@/assets/images/dance.png";
 import good from "@/assets/images/good.png";
-
+import phonSky from "@/assets/images/phon-sky.png";
+import phonBlueW from "@/assets/images/phon-white-blue.png";
+import phonBlueG from "@/assets/images/phon-blue-green.png";
+import phonGreenW from "@/assets/images/phon-white-green.png";
+import conslt from "@/assets/images/Psychologist-amico.png";
+import conslt2 from "@/assets/images/Psychologist-pana.png";
+import sociali from "@/assets/images/social.png";
+import phomBlueCloud from "@/assets/images/phon-blue-nice-2.jpg";
+import phonGreenD from '@/assets/images/phon-green-del.png'
 
 export default {
     logoStandart,
@@ -120,5 +128,14 @@ export default {
     dance,
     good,
     phonGreenExrPro,
-    iconPlusTextPink
+    iconPlusTextPink,
+    phonSky,
+    phonBlueW,
+    phonBlueG,
+    phonGreenW,
+    conslt,
+    conslt2,
+    sociali,
+    phomBlueCloud,
+    phonGreenD
 };

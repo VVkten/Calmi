@@ -192,12 +192,12 @@ const ResetPasswordForm: React.FC = () => {
               value={email}
               onChangeText={(text) => setEmail(text)}
               placeholder="Введіть ваш email"
-              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl shadow-sm border border-green-700 mx-auto"
+              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl border border-green-700 mx-auto"
               style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
             />
             <TouchableOpacity 
               onPress={handleSendCode} 
-              className="w-[200px] ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+              className="w-[200px] ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl"
             >
               <Text className="text-center text-lg font-ubuntu-medium text-green-900">Надіслати код</Text>
             </TouchableOpacity>
@@ -211,12 +211,12 @@ const ResetPasswordForm: React.FC = () => {
               value={code}
               onChangeText={(text) => setCode(text)}
               placeholder="Введіть код"
-              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl shadow-sm border border-green-700 mx-auto"
+              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl border border-green-700 mx-auto"
               style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
             />
             <TouchableOpacity 
               onPress={handleVerifyCode} 
-              className="w-[200px]  ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+              className="w-[200px]  ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl"
             >
               <Text className="text-center text-lg font-ubuntu-medium text-green-900">Перевірити код</Text>
             </TouchableOpacity>
@@ -229,7 +229,7 @@ const ResetPasswordForm: React.FC = () => {
             <TextInput 
               placeholder="Введіть новий пароль"
               secureTextEntry
-              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl shadow-sm border border-green-700 mx-auto"
+              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl  border border-green-700 mx-auto"
               style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
               value={newPassword}
               onChangeText={(text) => setNewPassword(text)}
@@ -242,7 +242,7 @@ const ResetPasswordForm: React.FC = () => {
             <TextInput
               placeholder="Підтвердіть пароль"
               secureTextEntry
-              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl shadow-sm border border-green-700 mx-auto"
+              className="w-[320px] bg-[#ffffff95] p-4 rounded-2xl border border-green-700 mx-auto"
               style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
               value={confirmPassword}
               onChangeText={(text) => setConfirmPassword(text)}
@@ -253,7 +253,7 @@ const ResetPasswordForm: React.FC = () => {
 
             <TouchableOpacity 
               onPress={handleResetPassword} 
-              className="w-[200px]  ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl shadow-md shadow-green-800"
+              className="w-[200px]  ml-[15%] bg-[#ffffffc6] border border-green-600 p-4 mt-4 rounded-xl"
             >
               <Text className="text-center text-lg font-ubuntu-medium text-green-900">Змінити пароль</Text>
             </TouchableOpacity>
@@ -262,7 +262,7 @@ const ResetPasswordForm: React.FC = () => {
 
         {errorMessage && <Text className="text-red-600">{errorMessage}</Text>}
 
-        <Link href={router.back} className="text-green-800 font-ubuntu-medium mt-4 shadow-md shadow-green-500">
+        <Link href={router.back} className="text-green-800 font-ubuntu-medium mt-4">
           Скасувати
         </Link>
       </ImageBackground>

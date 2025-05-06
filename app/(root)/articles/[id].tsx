@@ -59,7 +59,7 @@ export default function ArticleDetail() {
       <SafeAreaView className="flex-1">
         <ImageBackground source={backgroundImage} className="flex-1 w-full h-full" resizeMode="cover">
           <ScrollView className="flex-1 p-5">
-            <View className="bg-white p-4 rounded-xl shadow-md mb-11">
+            <View className="bg-white p-4 rounded-xl mb-11">
               <View>
                 <Text className="text-2xl font-ubuntu-bold " style={{ color: color_arc }}>{article.title}</Text>
                 <View className="flex-row items-center">

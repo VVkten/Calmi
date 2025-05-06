@@ -73,7 +73,7 @@ const Signup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email: email.toLowerCase(), password, brdate: composedBrdate, sex }),
+        body: JSON.stringify({ name, email: email.toLowerCase(), password, brdate: composedBrdate, gender: sex }),
       });
 
       if (!response.ok) {
@@ -126,7 +126,7 @@ const Signup = () => {
                   placeholder="Введіть ваше ім'я"
                   value={name}
                   onChangeText={setName}
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
+                  className="font-ubuntu-medium w-[320px] bg-[#ffffff95] p-4 rounded-2xl text-primary-dark-400 border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
               </View>
@@ -138,7 +138,7 @@ const Signup = () => {
                   value={email}
                   onChangeText={setEmail}
                   keyboardType="email-address"
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
+                  className="font-ubuntu-medium w-[320px] bg-[#ffffff95] p-4 rounded-2xl text-primary-dark-400 border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
               </View>
@@ -153,7 +153,7 @@ const Signup = () => {
                     maxLength={2}
                     value={birthMonth}
                     onChangeText={setBirthMonth}
-                    className="w-[90px] bg-[#ffffffac] p-4 rounded-xl text-center shadow-sm border border-primary-dark-400"
+                    className="w-[90px] bg-[#ffffffac] p-4 rounded-xl text-center border border-primary-dark-400"
                   />
                   <TextInput
                     placeholder="DD"
@@ -161,7 +161,7 @@ const Signup = () => {
                     maxLength={2}
                     value={birthDay}
                     onChangeText={setBirthDay}
-                    className="w-[90px] bg-[#ffffffac] p-4 rounded-xl text-center shadow-sm border border-primary-dark-400"
+                    className="w-[90px] bg-[#ffffffac] p-4 rounded-xl text-center border border-primary-dark-400"
                   />
                   <TextInput
                     placeholder="YYYY"
@@ -169,27 +169,37 @@ const Signup = () => {
                     maxLength={4}
                     value={birthYear}
                     onChangeText={setBirthYear}
-                    className="w-[110px] bg-[#ffffffac] p-4 rounded-xl text-center shadow-sm border border-primary-dark-400"
+                    className="w-[110px] bg-[#ffffffac] p-4 rounded-xl text-center border border-primary-dark-400"
                   />
                 </View>
                 <Text className="font-ubuntu-italic text-xs text-primary-dark-200 mt-2">Формат: ММ / ДД / РРРР</Text>
               </View>
 
               {/* Вибір статі */}
-              <View className="mb-8 flex-row justify-between">
+              <View className="mb-8 items-center">
+                <View className="flex-row justify-between space-x-4 mb-3 w-64">
+                  <TouchableOpacity 
+                    onPress={() => setsex('M')} 
+                    className={`flex-1 bg-[#ffffffc6] px-1 py-4 mx-1 rounded-xl border ${sex === 'M' ? 'border-primary-dark-200' : 'border-transparent'}`}>
+                    <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Чоловіча</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    onPress={() => setsex('F')} 
+                    className={`flex-1 bg-[#ffffffc6] px-1 py-4 rounded-xl border ${sex === 'F' ? 'border-primary-dark-200' : 'border-transparent'}`}>
+                    <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Жіноча</Text>
+                  </TouchableOpacity>
+                </View>
+
                 <TouchableOpacity 
-                onPress={() => setsex('Чоловіча')} 
-                className={`w-[150px] bg-[#ffffffc6] p-4 rounded-xl border ${sex === 'Чоловіча' ? 'border-primary-dark-200' : 'border-transparent'}`}>
-                  <Text className="text-center text-lg  font-ubuntu-medium text-primary-dark-100">Чоловіча</Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                onPress={() => setsex('Жіноча')} 
-                className={`w-[150px] bg-[#ffffffc6] ml-5 p-4 rounded-xl border ${sex === 'Жіноча' ? 'border-primary-dark-200' : 'border-transparent'}`}>
-                  <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Жіноча</Text>
+                  onPress={() => setsex('O')} 
+                  className={`w-[150px] bg-[#ffffffc6] py-4 px-1 rounded-xl border ${sex === 'O' ? 'border-primary-dark-200' : 'border-transparent'}`}>
+                  <Text className="text-center text-base font-ubuntu-medium text-primary-dark-100">Інша</Text>
                 </TouchableOpacity>
               </View>
 
-              <TouchableOpacity onPress={() => setStep(2)} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-10 rounded-xl shadow-md">
+
+              <TouchableOpacity onPress={() => setStep(2)} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-10 rounded-xl">
                 <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Далі</Text>
               </TouchableOpacity>
 
@@ -209,7 +219,7 @@ const Signup = () => {
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
+                  className="font-ubuntu-medium w-[320px] bg-[#ffffff95] p-4 rounded-2xl text-primary-dark-400 border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
               </View>
@@ -221,12 +231,12 @@ const Signup = () => {
                   value={confirmPassword}
                   onChangeText={setConfirmPassword}
                   secureTextEntry
-                  className="w-[320px] bg-[#ffffffac] p-4 rounded-3xl shadow-sm border border-primary-dark-400"
+                  className="font-ubuntu-medium w-[320px] bg-[#ffffff95] p-4 rounded-2xl text-primary-dark-400 border border-primary-dark-400 mx-auto"
                   style={{ paddingLeft: 15, paddingRight: 15, fontFamily: 'Ubuntu-Medium' }}
                 />
               </View>
 
-              <TouchableOpacity onPress={registerUser} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl shadow-md">
+              <TouchableOpacity onPress={registerUser} className="w-[200px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl">
                 <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Підтвердити</Text>
               </TouchableOpacity>
               

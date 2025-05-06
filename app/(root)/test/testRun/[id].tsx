@@ -49,9 +49,6 @@ export default function TestRun() {
     });
   }, [navigation]);
   
-  
-
-  // const API_BASE_URL = "http://192.168.46.138:8080/api/tests/";
 
   useEffect(() => {
     const fetchData = async () => {

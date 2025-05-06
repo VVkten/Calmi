@@ -1,4 +1,4 @@
-import { View, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity, Switch, ScrollView } from 'react-native';
+import { View, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity, Switch, ScrollView, Modal, TouchableWithoutFeedback } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,7 +10,7 @@ import API_BASE_URL from '@/settings';
 interface UserData {
   name: string;
   email: string;
-  avatar?: string;
+  photo?: string;
 }
 
 const DEFAULT_AVATAR = icon.user2;
@@ -19,6 +19,8 @@ const DEFAULT_AVATAR = icon.user2;
 const Account: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalText, setModalText] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -89,6 +91,11 @@ const Account: React.FC = () => {
     );
   }
 
+  const openModal = (text) => {
+    setModalText(text);
+    setModalVisible(true);
+  };
+
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground 
@@ -104,14 +111,18 @@ const Account: React.FC = () => {
 
         <View className='flex-1 m-0'>
           {/* Фото профілю */}
-          <View className="flex-row items-center self-center mt-5">
+          <View className="flex-row items-center mt-5">
             {/* Фото профілю */}
             <Image
-              source={userData.avatar ? { uri: userData.avatar } : DEFAULT_AVATAR}
-              tintColor={'#003155'}
-              className="w-36 h-36 rounded-3xl"
+              source={
+                userData.photo
+                  ? { uri: `http://192.168.221.138:8080${userData.photo}` }
+                  : DEFAULT_AVATAR
+              }
+              className="w-36 h-36"
+              style={{ objectFit: 'contain' }}
             />
-            
+
             {/* Ім'я та email справа */}
             <View className="ml-4">
               <Text className="text-xl font-ubuntu-regular text-primary-dark-100">{userData.name}</Text>
@@ -120,66 +131,67 @@ const Account: React.FC = () => {
           </View>
 
           <View className="mt-[5%] w-full">
-            <Link 
-              href="/" 
-              className="font-ubuntu-regular py-3 border-b border-blue-700"
+            <TouchableOpacity
+              onPress={() => router.navigate('/myinf')}
+              className="flex-row justify-between items-center font-ubuntu-regular py-3 border-b border-blue-950/50"
             >
-              <Text className="text-lg text-primary-dark-200">Моя інформація</Text>
+              <Text className="text-lg text-blue-950/80">Моя інформація</Text>
               <View className='m-0'>
-                 <Image source={icon.userC} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+                 <Image source={icon.userC} className="w-8 h-8 mb-[-3%]" tintColor='#03528C'/>
 
               </View>
-            </Link>
+            </TouchableOpacity>
 
-            <Link 
-              href="/forgotpassword" 
-              className="flex-row justify-between items-center font-ubuntu-regular py-3 border-b border-blue-700"
+            <TouchableOpacity 
+              onPress={() => router.navigate('/forgotpassword')}
+              className="flex-row justify-between items-center font-ubuntu-regular py-3 border-b border-blue-950/50"
             >
-              <Text className="text-lg text-primary-dark-200">Змінити пароль</Text>
+              <Text className="text-lg text-blue-950/80">Змінити пароль</Text>
               <View>
-                <Image source={icon.key} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+                <Image source={icon.key} className="w-8 h-8 mb-[-3%]" tintColor='#03528C'/>
               </View>
-            </Link>
+            </TouchableOpacity>
 
             <TouchableOpacity 
               onPress={handleLogout} 
-              className="items-center py-3 border-b border-blue-700"
+              className="flex-row justify-between font-ubuntu-regular items-center py-3 border-b border-blue-950/50"
             >
-              <Text className="text-lg text-primary-dark-200">Вийти з акаунита</Text>
+              <Text className="text-lg text-blue-950/80">Вийти з акаунту</Text>
               <View>
-                <Image source={icon.logi} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
+                <Image source={icon.logi} className="w-8 h-8 mb-[-3%]" tintColor='#03528C'/>
               </View>
               
             </TouchableOpacity>
 
-            <Link 
-              href="/" 
-              className="flex-row justify-between items-center py-3 border-b font-ubuntu-regular border-blue-700"
+            <TouchableOpacity 
+              onPress={() => router.navigate('/dellacc')} 
+              // href="/" 
+              className="flex-row justify-between items-center py-3 font-ubuntu-regular border-b border-blue-950/50"
             >
-              <Text className="text-lg text-primary-dark-200">Видалити акаунт</Text>
+              <Text className="text-lg text-blue-950/80">Видалити акаунт</Text>
               <View>
                 <Image source={icon.deletea} className="w-8 h-8 ml-40 mb-[-3%]" tintColor='#03528C'/>
               </View>
               
-            </Link>
-
-            <Link 
-              href="/" 
-              className="flex-row justify-between items-center py-3 border-b font-ubuntu-regular border-blue-700"
+            </TouchableOpacity>
+{/* 
+            <TouchableOpacity 
+              onPress={() => {}} 
+              className="flex-row justify-between items-center py-3 font-ubuntu-regular border-b border-blue-950/50"
             >
-              <Text className="text-lg text-primary-dark-200">Версія додатку</Text>
+              <Text className="text-lg text-blue-950/80">Версія додатку</Text>
               <Text className="text-lg text-gray-500">1.0.0.v</Text>
-            </Link>
+            </TouchableOpacity> */}
 
-            <Link 
-              href="/" 
-              className="py-3 border-b border-blue-700"
+            <TouchableOpacity 
+              onPress={() =>  openModal("Для отримання додаткової інформації про нашу послугу можна звернутися за номером +380 12 345 67 90")} 
+              className="flex-row justify-between items-center py-3 font-ubuntu-regular border-b border-blue-950/50"
             >
-              <Text className="text-lg text-primary-dark-200 font-ubuntu-regular">Підтримка спільноти</Text>
+              <Text className="text-lg text-blue-950/80">Підтримка спільноти</Text>
               <View>
                 <Image source={icon.comment}  className="w-8 h-8 ml-36 mb-[-3%]" tintColor='#03528C' />
               </View>
-            </Link>
+            </TouchableOpacity>
           </View>
 
             {/* Кнопка для виходу
@@ -191,15 +203,25 @@ const Account: React.FC = () => {
             </TouchableOpacity> */}
 
          
-          <View className="w-full h-6 mt-[25%] mb-0 flex-row justify-center items-center">
-            <Link href="/(root)/test/tests" className="text-primary-dark-200 text-sm mx-2">FAQ</Link>
+          <View className="w-full h-6 mt-[65%] ml-[2%] mb-0 flex-row justify-center items-center">
+            <Link href="/faq" className="text-primary-dark-200 text-sm mx-2">FAQ</Link>
             <Text className="text-gray-700 text-sm">|</Text>
-            <Link href="/(root)/(resultsSerch)/search" className="text-primary-dark-200 text-sm mx-2">Support</Link>
+            <Link href="/support" className="text-primary-dark-200 text-sm mx-2">Правила використання</Link>
           </View>
 
         </View>
         </ScrollView>
       </ImageBackground>
+       {/* Модальне вікно */}
+       <Modal visible={modalVisible} transparent animationType="slide">
+        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+          <View className="flex-1 justify-end">
+            <View className="bg-blue-50 p-5 border border-blue-900 rounded-t-2xl min-h-[30%] max-h-[50%]">
+              <Text className="text-lg mt-6 font-bold text-blue-900">{modalText}</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </SafeAreaView>
   );
 };

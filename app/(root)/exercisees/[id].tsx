@@ -10,9 +10,6 @@ import { Video } from "expo-av";
 import { useRouter } from "expo-router"; // Імпортуємо useRouter для навігації
 import API_BASE_URL from '@/settings';
 
-
-// const API_BASE_URL = "http://192.168.46.138:8080/api/exercise/";
-
 export default function ExerciseDetail() {
   const { id } = useLocalSearchParams();
   const [exercise, setExercise] = useState(null);
@@ -70,7 +67,7 @@ export default function ExerciseDetail() {
               </View>
 
               <View className="mt-[30%] items-center">
-                <Image source={{ uri: `http://192.168.46.138:8080${exercise.image}` }} className="w-52 h-52 rounded-xl" />
+                <Image source={{ uri: `http://192.168.221.138:8080${exercise.image}` }} className="w-52 h-52 rounded-xl" />
               </View>
 
               {/* Кнопка для переходу на відео сторінку */}

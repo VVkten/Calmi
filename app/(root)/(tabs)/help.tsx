@@ -94,7 +94,7 @@ export default function Help() {
 
                 <TouchableOpacity 
                   onPress={() => openModal("Отримайте психологічну допомогу: чат-бот надасть вам можливість поспілкуватися з модератором у переписці. Цей чат-бот створений, щоб допомогти вам почуватись краще та мати під рукою важливу інформацію для підтримки вашого психічного здоров’я. \n\nЧат-бот доступний у Telegram за посиланням: t.me/helpbot")} 
-                  className='w-full h-24 mb-2 rounded-xl border border-red-600 shadow-md text-center'>
+                  className='w-full h-24 mb-2 rounded-xl border border-red-600 text-center'>
                   <View className='flex flex-row items-center w-full h-full bg-white rounded-lg px-4'>
                     <Image source={icon.comm} className='w-14 h-12 tint-blue-700 mx-3' />
                     <Text className='text-pink-900 text-lg font-bold'>Чат Бот - Підтримка</Text>
@@ -161,7 +161,7 @@ export default function Help() {
        <Modal visible={modalVisible} transparent animationType="slide">
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
           <View className="flex-1 justify-end">
-            <View className="bg-white shadow p-5 border border-pink-900 rounded-t-2xl min-h-[50%] max-h-[80%]">
+            <View className="bg-white p-5 border border-pink-900 rounded-t-2xl min-h-[50%] max-h-[80%]">
               <TouchableOpacity onPress={() => setModalVisible(false)} className="mt-3 p-2 rounded-lg items-end">
                 <Image source={icon.addPostNotDot} className='w-6 h-6' tintColor='#831843'/>
               </TouchableOpacity>

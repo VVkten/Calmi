@@ -119,7 +119,7 @@ const Login = () => {
           {/* Кнопка входу */}
           <TouchableOpacity 
             onPress={handleLogin}
-            className="w-[320px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl shadow-md"
+            className="w-[320px] bg-[#ffffffc6] border border-primary-dark-400 p-4 mt-4 rounded-xl"
             style={{ zIndex: 10 }}
           >
             <Text className="text-center text-lg font-ubuntu-medium text-primary-dark-100">Увійти</Text>

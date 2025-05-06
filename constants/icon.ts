@@ -35,6 +35,8 @@ import userC from "@/assets/icons/acc.png"
 import key from '@/assets/icons/key.png'
 import deletea from "@/assets/icons/delete.png"
 import logi from "@/assets/icons/logout.png"
+import phone from "@/assets/icons/phone.png"
+import mess from "@/assets/icons/mess.png"
 
 export default {
     settings,
@@ -73,5 +75,7 @@ export default {
     userC,
     key,
     deletea,
-    logi
+    logi,
+    phone,
+    mess
 };

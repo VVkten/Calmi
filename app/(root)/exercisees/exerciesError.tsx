@@ -16,7 +16,7 @@ export default function ExerciseError() {
     <SafeAreaView className="flex-1">
       <ImageBackground source={image.phonBlueYel} className="flex-1 w-full h-full" resizeMode="cover">
         <ScrollView className="flex-1 p-5">
-          <View className="bg-white p-4 rounded-xl shadow-md mb-11 items-center mt-[50%]">
+          <View className="bg-white p-4 rounded-xl mb-11 items-center mt-[50%]">
             <Image 
               source={icon.robotDead} 
               className="w-34 h-34 rounded-lg"
