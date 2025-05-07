@@ -67,7 +67,7 @@ export default function ExerciseDetail() {
               </View>
 
               <View className="mt-[30%] items-center">
-                <Image source={{ uri: `http://192.168.221.138:8080${exercise.image}` }} className="w-52 h-52 rounded-xl" />
+                <Image source={{ uri: `http://192.168.1.95:8080${exercise.image}` }} className="w-52 h-52 rounded-xl" />
               </View>
 
               {/* Кнопка для переходу на відео сторінку */}

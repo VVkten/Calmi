@@ -22,7 +22,7 @@ export default function SettingsLayout() {
       <Stack.Screen name="dellacc" options={{ title: "Видалити аккаунт" }} />
       <Stack.Screen name="faq" options={{ title: "Питання та відповіді" }} />
       <Stack.Screen name="support" options={{ title: "Правила використання" }} />
-
+      <Stack.Screen name="myinf" options={{ title: "Моя інформація" }} />
     </Stack>
   );
 }
