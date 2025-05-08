@@ -22,7 +22,35 @@ const Account: React.FC = () => {
   const [modalText, setModalText] = useState('');
   const [lastTestResult, setLastTestResult] = useState<any | null>(null);  // Додано для зберігання результату тесту
   const router = useRouter();
+  const [testDetails, setTestDetails] = useState<any | null>(null);
 
+  useEffect(() => {
+    const fetchTest = async () => {
+      if (!lastTestResult?.test) return;
+  
+      try {
+        const token = await AsyncStorage.getItem("jwt");
+        const response = await fetch(`${API_BASE_URL}tests/${lastTestResult.test}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error("Не вдалося отримати дані тесту");
+        }
+  
+        const data = await response.json();
+        setTestDetails(data);
+      } catch (error) {
+        console.error("Помилка при завантаженні тесту:", error);
+      }
+    };
+  
+    fetchTest();
+  }, [lastTestResult]);
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -122,14 +150,26 @@ const Account: React.FC = () => {
     );
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);  // Створюємо об'єкт Date з ISO рядка
+    return date.toLocaleDateString("uk-UA", {
+      // year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground
-        source={image.phonStandart}
+        source={image.blueDot}
         className="flex-1 w-full h-full items-center p-5"
         resizeMode="cover"
       >
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 10 }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          
           <View className="flex-1 m-0">
             <View className="flex-row items-center mt-5">
               <Image
@@ -144,14 +184,6 @@ const Account: React.FC = () => {
             </View>
 
             <View className="mt-[5%] w-full">
-              {/* Додавання секції для останнього результату тесту */}
-              {lastTestResult && (
-                <View className="py-3 border-b border-blue-950/50">
-                  <Text className="text-lg text-blue-950/80">Останній результат тесту:</Text>
-                  <Text className="text-lg text-blue-950/80">{lastTestResult.result_data}</Text>
-                  <Text className="text-lg text-blue-950/80">Тест ID: {lastTestResult.test}</Text>
-                </View>
-              )}
 
               {/* Інші кнопки */}
               <TouchableOpacity onPress={() => router.push('/myinf')} className="flex-row justify-between items-center py-3 border-b border-blue-950/50">
@@ -178,9 +210,60 @@ const Account: React.FC = () => {
                 <Text className="text-lg text-blue-950/80">Підтримка спільноти</Text>
                 <Image source={icon.comment} className="w-8 h-8 ml-36 mb-[-3%]" tintColor="#03528C" />
               </TouchableOpacity>
-            </View>
 
-            <View className="w-full h-6 mt-[65%] ml-[2%] mb-0 flex-row justify-center items-center">
+                {/* Existing buttons */}
+  
+              <TouchableOpacity onPress={() => router.push('/(root)/(settings)/savedArticles')} className="flex-row justify-between items-center py-3 border-b border-blue-950/50">
+                <Text className="text-lg text-blue-950/80">Збережені статті</Text>
+                <Image source={icon.article} className="w-8 h-8 mb-[-3%]" tintColor="#03528C" />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => router.push('/(root)/(settings)/savedExercises')} className="flex-row justify-between items-center py-3 border-b border-blue-950/50">
+                <Text className="text-lg text-blue-950/80">Збережені вправи</Text>
+                <Image source={icon.exercise} className="w-8 h-8 mb-[-3%]" tintColor="#03528C" />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => router.push('/(root)/(settings)/savedTests')} className="flex-row justify-between items-center py-3 border-b border-blue-950/50">
+                <Text className="text-lg text-blue-950/80">Збережені тести</Text>
+                <Image source={icon.test} className="w-8 h-8 mb-[-3%]" tintColor="#03528C" />
+              </TouchableOpacity>
+
+            </View>
+             {/* Додавання секції для останнього результату тесту */}
+             {/* {lastTestResult && (
+                <View className="py-3">
+                  <Text className="text-lg text-blue-950/80">Останній результат тесту:</Text>
+                  <Text className="text-lg text-blue-950/80">{lastTestResult.result_data}</Text>
+                  <Text className="text-lg text-blue-950/80">Тест ID: {lastTestResult.test}</Text>
+                </View>
+              )} */}
+              {lastTestResult && (
+                <View className="py-3">
+                  <Text className="text-lg font-ubuntu-bold text-blue-900">Останній пройдений тест:</Text>
+                  {testDetails && (
+                  <TouchableOpacity onPress={() => router.push(`/test/${testDetails.id}`)}>
+                  <View className='flex-row items-center mt-1'>
+                    <View>
+                      <Text className="text-base mr-2 text-blue-900 font-ubuntu-medium mt-1">
+                        {testDetails.title}
+                      </Text>
+            
+                    <Text className='font-ubuntu-mediumitalic mr-6 text-sm text-blue-900'>{formatDate(lastTestResult.passed_at)}</Text>
+                    </View>
+                    
+                    <View className='w-[45%]'>
+                      <Text className="text-base text-blue-900">
+                            {lastTestResult.result_data.slice(0, 35)}...
+                          </Text>                    
+                        </View>
+
+                  </View> 
+                  </TouchableOpacity>     )}                
+                
+                </View> 
+              )}
+
+            <View className="w-full h-6 ml-[2%] mb-0 flex-row justify-center items-center">
               <Link href="/faq" className="text-primary-dark-200 text-sm mx-2">FAQ</Link>
               <Text className="text-gray-700 text-sm">|</Text>
               <Link href="/support" className="text-primary-dark-200 text-sm mx-2">Правила використання</Link>

@@ -67,6 +67,7 @@ import conslt2 from "@/assets/images/Psychologist-pana.png";
 import sociali from "@/assets/images/social.png";
 import phomBlueCloud from "@/assets/images/phon-blue-nice-2.jpg";
 import phonGreenD from '@/assets/images/phon-green-del.png'
+import blueDot from '@/assets/images/bluedot.jpg'
 
 export default {
     logoStandart,
@@ -137,5 +138,6 @@ export default {
     conslt2,
     sociali,
     phomBlueCloud,
-    phonGreenD
+    phonGreenD,
+    blueDot
 };

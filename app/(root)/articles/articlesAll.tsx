@@ -42,8 +42,12 @@ export default function articleAll() {
         const articlesData = await articlesRes.json();
         const categoriesData = await categoriesRes.json();
 
-        setArticles(articlesData);
-        setCategories(categoriesData);
+        // Фільтрація: прибираємо категорію з id === 2 і її статті
+        const filteredCategories = categoriesData.filter((cat) => cat.id !== 2);
+        const filteredArticles = articlesData.filter((article) => article.category !== 2);
+
+        setArticles(filteredArticles);
+        setCategories(filteredCategories);
       } catch (error) {
         console.error('Помилка при отриманні даних:', error);
       } finally {
@@ -82,7 +86,7 @@ export default function articleAll() {
 
   return (
     <SafeAreaView className="flex-1">
-      <Stack.Screen options={{ title: 'Статті' }}/>
+      <Stack.Screen options={{ title: 'Статті' }} />
 
       <ImageBackground
         source={image.phonPeach3}
@@ -119,15 +123,16 @@ export default function articleAll() {
               {searchQuery.trim() !== '' ? (
                 <>
                   {filteredArticles.length === 0 ? (
-                     <View className='w-full flex justify-center items-center'>
-                        <Image 
-                          source={icon.notFound} 
-                          tintColor={"#9a3412"} 
-                          className="w-44 h-44" />
-                        <Text className="text-center text-lg text-orange-800 px-4 font-ubuntu-medium w-full mt-4">
-                          Нажаль, ми нічого не знайшли, спробуй по-іншому
-                        </Text>
-                      </View>
+                    <View className="w-full flex justify-center items-center">
+                      <Image
+                        source={icon.notFound}
+                        tintColor={"#9a3412"}
+                        className="w-44 h-44"
+                      />
+                      <Text className="text-center text-lg text-orange-800 px-4 font-ubuntu-medium w-full mt-4">
+                        Нажаль, ми нічого не знайшли, спробуй по-іншому
+                      </Text>
+                    </View>
                   ) : (
                     filteredArticles.map((article) => (
                       <ArticleCard
@@ -142,7 +147,7 @@ export default function articleAll() {
                   )}
                 </>
               ) : (
-                // Якщо нема пошукового запиту — показуємо по категоріях
+                // Якщо нема пошуку — показуємо по категоріях
                 <View className="mb-4 mx-1">
                   {Object.entries(groupedArticles).map(([category, articlesInCategory]) => (
                     <View key={category} className="mb-4">

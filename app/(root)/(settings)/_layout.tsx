@@ -23,6 +23,10 @@ export default function SettingsLayout() {
       <Stack.Screen name="faq" options={{ title: "Питання та відповіді" }} />
       <Stack.Screen name="support" options={{ title: "Правила використання" }} />
       <Stack.Screen name="myinf" options={{ title: "Моя інформація" }} />
+      <Stack.Screen name="savedArticles" options={{ title: "Збережені статті" }} />
+      <Stack.Screen name="savedExercises" options={{ title: "Збережені вправи" }} />
+      <Stack.Screen name="savedTests" options={{ title: "Збережені тести" }} />
+      
     </Stack>
   );
 }

@@ -37,6 +37,9 @@ import deletea from "@/assets/icons/delete.png"
 import logi from "@/assets/icons/logout.png"
 import phone from "@/assets/icons/phone.png"
 import mess from "@/assets/icons/mess.png"
+import test from "@/assets/icons/tests.png";
+import exercise from "@/assets/icons/exercise.png";
+import article from "@/assets/icons/article.png";
 
 export default {
     settings,
@@ -77,5 +80,8 @@ export default {
     deletea,
     logi,
     phone,
-    mess
+    mess,
+    test,
+    exercise,
+    article
 };
